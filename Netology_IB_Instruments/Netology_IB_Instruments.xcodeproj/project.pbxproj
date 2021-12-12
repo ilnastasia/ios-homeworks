@@ -13,9 +13,6 @@
 		5D2420A2275021840080AEEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D2420A0275021840080AEEE /* Main.storyboard */; };
 		5D2420A4275021860080AEEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D2420A3275021860080AEEE /* Assets.xcassets */; };
 		5D2420A7275021860080AEEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D2420A5275021860080AEEE /* LaunchScreen.storyboard */; };
-		5D2420B2275021860080AEEE /* Netology_IB_InstrumentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2420B1275021860080AEEE /* Netology_IB_InstrumentsTests.swift */; };
-		5D2420BC275021860080AEEE /* Netology_IB_InstrumentsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2420BB275021860080AEEE /* Netology_IB_InstrumentsUITests.swift */; };
-		5D2420BE275021860080AEEE /* Netology_IB_InstrumentsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2420BD275021860080AEEE /* Netology_IB_InstrumentsUITestsLaunchTests.swift */; };
 		5D2420CB275022350080AEEE /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D2420CA275022350080AEEE /* ProfileView.xib */; };
 		5DA1D9FD27514BE50047F4E1 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA1D9FC27514BE50047F4E1 /* ProfileView.swift */; };
 		5DA1D9FF27515A130047F4E1 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DA1D9FE27515A130047F4E1 /* Profile.storyboard */; };
@@ -49,10 +46,7 @@
 		5D2420A6275021860080AEEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5D2420A8275021860080AEEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D2420AD275021860080AEEE /* Netology_IB_InstrumentsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Netology_IB_InstrumentsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5D2420B1275021860080AEEE /* Netology_IB_InstrumentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Netology_IB_InstrumentsTests.swift; sourceTree = "<group>"; };
 		5D2420B7275021860080AEEE /* Netology_IB_InstrumentsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Netology_IB_InstrumentsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5D2420BB275021860080AEEE /* Netology_IB_InstrumentsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Netology_IB_InstrumentsUITests.swift; sourceTree = "<group>"; };
-		5D2420BD275021860080AEEE /* Netology_IB_InstrumentsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Netology_IB_InstrumentsUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5D2420CA275022350080AEEE /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
 		5DA1D9FC27514BE50047F4E1 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		5DA1D9FE27515A130047F4E1 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -88,8 +82,6 @@
 			isa = PBXGroup;
 			children = (
 				5D242099275021840080AEEE /* Netology_IB_Instruments */,
-				5D2420B0275021860080AEEE /* Netology_IB_InstrumentsTests */,
-				5D2420BA275021860080AEEE /* Netology_IB_InstrumentsUITests */,
 				5D242098275021840080AEEE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -120,23 +112,6 @@
 				5DA1DA0027515A410047F4E1 /* ProfileViewController.swift */,
 			);
 			path = Netology_IB_Instruments;
-			sourceTree = "<group>";
-		};
-		5D2420B0275021860080AEEE /* Netology_IB_InstrumentsTests */ = {
-			isa = PBXGroup;
-			children = (
-				5D2420B1275021860080AEEE /* Netology_IB_InstrumentsTests.swift */,
-			);
-			path = Netology_IB_InstrumentsTests;
-			sourceTree = "<group>";
-		};
-		5D2420BA275021860080AEEE /* Netology_IB_InstrumentsUITests */ = {
-			isa = PBXGroup;
-			children = (
-				5D2420BB275021860080AEEE /* Netology_IB_InstrumentsUITests.swift */,
-				5D2420BD275021860080AEEE /* Netology_IB_InstrumentsUITestsLaunchTests.swift */,
-			);
-			path = Netology_IB_InstrumentsUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,7 +259,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D2420B2275021860080AEEE /* Netology_IB_InstrumentsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,8 +266,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D2420BC275021860080AEEE /* Netology_IB_InstrumentsUITests.swift in Sources */,
-				5D2420BE275021860080AEEE /* Netology_IB_InstrumentsUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
