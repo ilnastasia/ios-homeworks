@@ -18,7 +18,7 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .white
+        view.backgroundColor = .lightGray
         navigationItem.title = "Лента"
         
         postController = PostViewController()
@@ -34,10 +34,40 @@ class FeedViewController: UIViewController {
         
         view.addSubview(toPostButton)
         
+        UpperBorder()
+        
     }
     
     @objc func toPostButtonClicked() {
         self.navigationController?.pushViewController(postController!, animated: true)
+    }
+    
+    func UpperBorder() {
+        let upperBorderView = UIView()
+         
+        upperBorderView.backgroundColor = .white
+        view.addSubview(upperBorderView)
+        
+        let upperBorderWidth = UIScreen.main.bounds.width
+        let upperBorderHeight = UIScreen.main.bounds.height
+        
+        let widthConstraint = NSLayoutConstraint(item: upperBorderView,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1.0, constant: upperBorderWidth)
+
+        
+        let heightConstraint = NSLayoutConstraint(item: upperBorderView,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1.0, constant: upperBorderHeight/7)
+        
+        view.addConstraint(widthConstraint)
+        view.addConstraint(heightConstraint)
     }
 }
 
