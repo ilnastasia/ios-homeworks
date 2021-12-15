@@ -39,7 +39,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-struct Post {
-    var title: String
-}
+
 
