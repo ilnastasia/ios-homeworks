@@ -31,11 +31,9 @@ class FeedViewController: UIViewController {
         toPostButton.setTitle("Открыть пост", for: .normal)
         toPostButton.backgroundColor = .systemGray
         toPostButton.addTarget(self, action:#selector(self.toPostButtonClicked), for: .touchUpInside)
-        
         view.addSubview(toPostButton)
         
         UpperBorder()
-        
     }
     
     @objc func toPostButtonClicked() {
@@ -43,17 +41,17 @@ class FeedViewController: UIViewController {
     }
     
     func UpperBorder() {
-        
+
         let upperBorderView = UIView()
-         
+
         upperBorderView.backgroundColor = .white
         view.addSubview(upperBorderView)
-        
+
         let upperBorderWidth = UIScreen.main.bounds.width
         let upperBorderHeight = UIScreen.main.bounds.height
-        
+
         upperBorderView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         let widthConstraint = NSLayoutConstraint(item: upperBorderView,
             attribute: .width,
             relatedBy: .equal,
@@ -67,7 +65,7 @@ class FeedViewController: UIViewController {
             toItem: nil,
             attribute: .notAnAttribute,
             multiplier: 1.0, constant: upperBorderHeight/9)
-        
+
         let horizontalConstraint = NSLayoutConstraint(item: upperBorderView,
             attribute: .centerX,
             relatedBy: .equal,
@@ -75,7 +73,7 @@ class FeedViewController: UIViewController {
             attribute: .centerX,
             multiplier: 1.0,
             constant: 0)
-        
+
         let verticalConstraint = NSLayoutConstraint(item: upperBorderView,
             attribute: .top,
             relatedBy: .equal,
@@ -83,7 +81,7 @@ class FeedViewController: UIViewController {
             attribute: .top,
             multiplier: 1.0,
             constant: 0)
-            
+
         NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
     }
 }
