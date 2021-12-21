@@ -32,25 +32,25 @@ class ProfileHeaderView : UIView {
         
         profileController = ProfileViewController()
         
-        let thisHeight = profileController?.screenHeight
-        let thisWidth = profileController?.screenWidth
+        let screenWidth = UIScreen.main.bounds.width
+        let screenHeight = UIScreen.main.bounds.height
         
         avatarView.frame = CGRect(
             x: 16,
-            y: thisHeight!/9 + 16,
-            width: thisWidth!/3.5,
-            height: thisWidth!/3.5)
+            y: screenHeight/9 + 16,
+            width: screenWidth/3.5,
+            height: screenWidth/3.5)
         avatarView.layer.borderWidth = 3.0
         avatarView.layer.borderColor = UIColor.white.cgColor
-        avatarView.layer.cornerRadius = thisWidth!/7
+        avatarView.layer.cornerRadius = screenWidth/7
         avatarView.layer.contents = UIImage(named: "hedgehog")?.cgImage
         avatarView.clipsToBounds = true
         addSubview(avatarView)
         
         
         nameView.frame = CGRect(
-            x: thisWidth!/2.75,
-            y: thisHeight!/9 + 27,
+            x: screenWidth/2.75,
+            y: screenHeight/9 + 27,
             width: 250,
             height: 21)
         nameView.textColor = .black
@@ -61,8 +61,8 @@ class ProfileHeaderView : UIView {
         
         
         descriptionView.frame = CGRect(
-            x: thisWidth!/2.75,
-            y: thisWidth!/3.5 + thisHeight!/9 - 20,
+            x: screenWidth/2.75,
+            y: screenWidth/3.5 + screenHeight/9 - 20,
             width: 250,
             height: 18)
         descriptionView.textColor = .gray
@@ -74,8 +74,8 @@ class ProfileHeaderView : UIView {
         
         statusButton.frame = CGRect(
             x: 16,
-            y: 58 + thisWidth!/3.5 + thisHeight!/9,
-            width: thisWidth! - 32,
+            y: 58 + screenWidth/3.5 + screenHeight/9,
+            width: screenWidth - 32,
             height: 50)
         statusButton.setTitle("Установить статус", for: .normal)
         statusButton.backgroundColor = .systemBlue
@@ -89,9 +89,9 @@ class ProfileHeaderView : UIView {
         addSubview(statusButton)
         
         statusField.frame = CGRect(
-            x: thisWidth!/2.75,
-            y: thisWidth!/3.5 + thisHeight!/9 + 3,
-            width: (thisWidth! - 16) - thisWidth!/2.75,
+            x: screenWidth/2.75,
+            y: screenWidth/3.5 + screenHeight/9 + 3,
+            width: (screenWidth - 16) - screenWidth/2.75,
             height: 40)
         statusField.backgroundColor = .white
         statusField.layer.borderColor = UIColor.black.cgColor
@@ -107,12 +107,12 @@ class ProfileHeaderView : UIView {
     }
     
     @objc func statusTextChanged(_ textField: UITextField) {
-        statusText = textField.text!
+        statusText = textField.text ?? "Error"
     }
 
     @objc func statusButtonClicked() {
         saveName.set(descriptionView.text, forKey: "descriptionView")
-        print(descriptionView.text!)
+        print(descriptionView.text ?? "Error")
     }
     
     

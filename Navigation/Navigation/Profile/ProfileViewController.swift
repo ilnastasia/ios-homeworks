@@ -6,7 +6,7 @@ import UIKit
 class ProfileViewController : UIViewController {
     
     var profileHeadView : ProfileHeaderView?
-    var feedController: FeedViewController?
+    var feedController : FeedViewController?
     
     let screenWidth = UIScreen.main.bounds.width
     let screenHeight = UIScreen.main.bounds.height
