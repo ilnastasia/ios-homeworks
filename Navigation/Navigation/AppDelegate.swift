@@ -14,6 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         
         let tabbarController = UITabBarController()
+        UITabBar.appearance().backgroundColor = .white
+        
         
         let userFeed = UINavigationController(rootViewController: feedController)
         let userFeedItem = UITabBarItem()
@@ -37,7 +39,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-struct Post {
-    var title: String
-}
+
 

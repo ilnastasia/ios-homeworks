@@ -1,71 +1,55 @@
 
+import Foundation
 import UIKit
 
-class FeedViewController: UIViewController {
-    
-    var postController: PostViewController?
-    var post : Post
-    
-    init(post: Post) {
-        self.post = post
-        super.init(nibName: nil, bundle: nil)
-    }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+class ProfileViewController : UIViewController {
+    
+    var profileHeadView : ProfileHeaderView?
+    var feedController : FeedViewController?
+    
+    let screenWidth = UIScreen.main.bounds.width
+    let screenHeight = UIScreen.main.bounds.height
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    
         view.backgroundColor = .lightGray
-        navigationItem.title = "Лента"
+        navigationItem.title = "Мой профиль"
         
-        postController = PostViewController()
-        postController?.postName = post.title
-
-        let toPostButton = UIButton(type: .system)
-        toPostButton.frame.size.height = 50
-        toPostButton.frame.size.width = 200
-        toPostButton.center = view.center
-        toPostButton.setTitle("Открыть пост", for: .normal)
-        toPostButton.backgroundColor = .systemGray
-        toPostButton.addTarget(self, action:#selector(self.toPostButtonClicked), for: .touchUpInside)
-        view.addSubview(toPostButton)
-        
+        profileHeadView = ProfileHeaderView()
+        view.addSubview(profileHeadView!)
+       
         UpperBorder()
     }
     
-    @objc func toPostButtonClicked() {
-        self.navigationController?.pushViewController(postController!, animated: true)
+    override func viewWillLayoutSubviews() {
+        profileHeadView!.frame = view.frame
     }
     
-    func UpperBorder() {
-
+    public func UpperBorder() {
+        
         let upperBorderView = UIView()
-
+         
         upperBorderView.backgroundColor = .white
         view.addSubview(upperBorderView)
 
-        let upperBorderWidth = UIScreen.main.bounds.width
-        let upperBorderHeight = UIScreen.main.bounds.height
-
         upperBorderView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         let widthConstraint = NSLayoutConstraint(item: upperBorderView,
             attribute: .width,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
-            multiplier: 1.0, constant: upperBorderWidth)
+            multiplier: 1.0, constant: screenWidth)
 
         let heightConstraint = NSLayoutConstraint(item: upperBorderView,
             attribute: .height,
             relatedBy: .equal,
             toItem: nil,
             attribute: .notAnAttribute,
-            multiplier: 1.0, constant: upperBorderHeight/9)
-
+            multiplier: 1.0, constant: screenHeight/9)
+        
         let horizontalConstraint = NSLayoutConstraint(item: upperBorderView,
             attribute: .centerX,
             relatedBy: .equal,
@@ -73,7 +57,7 @@ class FeedViewController: UIViewController {
             attribute: .centerX,
             multiplier: 1.0,
             constant: 0)
-
+        
         let verticalConstraint = NSLayoutConstraint(item: upperBorderView,
             attribute: .top,
             relatedBy: .equal,
@@ -81,10 +65,7 @@ class FeedViewController: UIViewController {
             attribute: .top,
             multiplier: 1.0,
             constant: 0)
-
+            
         NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
     }
 }
-
-
-
