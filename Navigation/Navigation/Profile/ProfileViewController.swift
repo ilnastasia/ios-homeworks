@@ -41,10 +41,10 @@ class ProfileViewController : UIViewController {
     }
 
     func setupSomeButton() {
-        someButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        someButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         someButton.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        someButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
-        someButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        someButton.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        someButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     
         someButton.setTitle("Кнопка", for: .normal)
         someButton.backgroundColor = .systemBlue
