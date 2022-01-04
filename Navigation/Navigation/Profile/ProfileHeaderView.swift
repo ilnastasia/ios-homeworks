@@ -14,31 +14,31 @@ class ProfileHeaderView : UIView {
     
     let avatarView : UIImageView = {
         let view = UIImageView()
-        view.translatesAutoresizingMaskIntoConstraints = false
+        view.toAutoLayout()
         return view
     }()
     
     let nameView : UILabel = {
         let view = UILabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
+        view.toAutoLayout()
         return view
     }()
     
     let descriptionView : UILabel = {
         let view = UILabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
+        view.toAutoLayout()
         return view
     }()
     
     let statusButton : UIButton = {
         let view = UIButton(type: .system)
-        view.translatesAutoresizingMaskIntoConstraints = false
+        view.toAutoLayout()
         return view
     }()
     
     let statusField : UITextField = {
         let view = UITextField()
-        view.translatesAutoresizingMaskIntoConstraints = false
+        view.toAutoLayout()
         return view
     }()
     
@@ -143,7 +143,13 @@ class ProfileHeaderView : UIView {
 }
 
 public extension UIView {
+    
     func addSubviews(_ subviews: UIView...) {
-            subviews.forEach { addSubview($0) }
+        subviews.forEach { addSubview($0) }
     }
+    
+    func toAutoLayout() {
+        translatesAutoresizingMaskIntoConstraints = false
+    }
+
 }

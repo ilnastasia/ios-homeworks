@@ -2,7 +2,6 @@
 import Foundation
 import UIKit
 
-
 class ProfileViewController : UIViewController {
     
     var profileHeadView : ProfileHeaderView?
@@ -24,10 +23,9 @@ class ProfileViewController : UIViewController {
         navigationItem.title = "Мой профиль"
         
         profileHeadView = ProfileHeaderView()
-        profileHeadView?.translatesAutoresizingMaskIntoConstraints = false
-        someButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(profileHeadView!)
-        view.addSubview(someButton)
+        profileHeadView?.toAutoLayout()
+        someButton.toAutoLayout()
+        view.addSubviews(profileHeadView!, someButton)
        
         setupSomeButton()
         setupRrofileHeaderView()
