@@ -11,6 +11,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        let barAppearance = UINavigationBarAppearance()
+        barAppearance.backgroundColor = .white
+
+        let navigationBar = UINavigationBar.appearance()
+        navigationBar.standardAppearance = barAppearance
+        navigationBar.scrollEdgeAppearance = barAppearance
+        
         window = UIWindow()
         
         let tabbarController = UITabBarController()
