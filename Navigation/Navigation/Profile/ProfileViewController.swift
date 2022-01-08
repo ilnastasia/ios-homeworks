@@ -2,19 +2,25 @@
 import Foundation
 import UIKit
 
-class ProfileViewController : UIViewController {
+class ProfileViewController: UIViewController {
     
-    var profileHeadView : ProfileHeaderView?
-    var feedController : FeedViewController?
+    var profileHeadView: ProfileHeaderView?
+    var feedController: FeedViewController?
+    var values: Values?
     
-    let someButton : UIButton = {
-        let view = UIButton(type: .system)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    let someButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.toAutoLayout()
+        button.setTitle("Кнопка", for: .normal)
+        button.backgroundColor = .systemBlue
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 4
+        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowRadius = 4
+        button.layer.shadowOpacity = 0.7
+        return button
     }()
-    
-    let screenWidth = UIScreen.main.bounds.width
-    let screenHeight = UIScreen.main.bounds.height
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,30 +33,22 @@ class ProfileViewController : UIViewController {
         someButton.toAutoLayout()
         view.addSubviews(profileHeadView!, someButton)
        
-        setupSomeButton()
-        setupRrofileHeaderView()
+        setupViews()
     }
     
-    func setupRrofileHeaderView() {
-        profileHeadView!.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        profileHeadView!.widthAnchor.constraint(equalToConstant: screenWidth).isActive = true
-        profileHeadView!.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        profileHeadView!.heightAnchor.constraint(equalToConstant: 220).isActive = true
-    }
-
-    func setupSomeButton() {
-        someButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        someButton.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        someButton.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        someButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-    
-        someButton.setTitle("Кнопка", for: .normal)
-        someButton.backgroundColor = .systemBlue
-        someButton.setTitleColor(.white, for: .normal)
-        someButton.layer.cornerRadius = 4
-        someButton.layer.shadowOffset = CGSize(width: 4, height: 4)
-        someButton.layer.shadowColor = UIColor.black.cgColor
-        someButton.layer.shadowRadius = 4
-        someButton.layer.shadowOpacity = 0.7
+    func setupViews() {
+        values = Values()
+        
+        NSLayoutConstraint.activate([
+            profileHeadView!.leftAnchor.constraint(equalTo: view.leftAnchor),
+            profileHeadView!.widthAnchor.constraint(equalToConstant: values?.screenWidth ?? 0),
+            profileHeadView!.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            profileHeadView!.heightAnchor.constraint(equalToConstant: 220),
+            
+            someButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            someButton.leftAnchor.constraint(equalTo: view.leftAnchor),
+            someButton.rightAnchor.constraint(equalTo: view.rightAnchor),
+            someButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
     }
 }
