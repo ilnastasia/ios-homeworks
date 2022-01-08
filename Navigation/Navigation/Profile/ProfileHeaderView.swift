@@ -2,7 +2,7 @@
 import Foundation
 import UIKit
 
-class ProfileHeaderView : UIView {
+class ProfileHeaderView: UIView {
     
     override init (frame: CGRect) {
         super.init(frame: frame)
@@ -12,11 +12,65 @@ class ProfileHeaderView : UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let avatarView = UIImageView()
-    let nameView = UILabel()
-    let descriptionView = UILabel()
-    let statusButton = UIButton(type: .system)
-    let statusField = UITextField()
+    var values: Values?
+    
+    let avatarView: UIImageView = {
+        let view = UIImageView()
+        view.toAutoLayout()
+        view.layer.borderWidth = 3.0
+        view.layer.borderColor = UIColor.white.cgColor
+        view.layer.contents = UIImage(named: "hedgehog")?.cgImage
+        view.clipsToBounds = true
+        return view
+    }()
+    
+    let nameView: UILabel = {
+        let view = UILabel()
+        view.toAutoLayout()
+        view.textColor = .black
+        view.textAlignment = .justified
+        view.font = UIFont(name: "Helvetica-Bold", size : 18)
+        view.text = "Ежик Колючий"
+        return view
+    }()
+    
+    let descriptionView: UILabel = {
+        let view = UILabel()
+        view.toAutoLayout()
+        view.textColor = .gray
+        view.textAlignment = .justified
+        view.font = UIFont(name: "Helvetica-Regular", size : 14)
+        view.text = "Хожу по лесу"
+        return view
+    }()
+    
+    let statusButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.toAutoLayout()
+        button.setTitle("Установить статус", for: .normal)
+        button.backgroundColor = .systemBlue
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 4
+        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowRadius = 4
+        button.layer.shadowOpacity = 0.7
+        button.addTarget(self, action:#selector(statusButtonClicked), for: .touchUpInside)
+        return button
+    }()
+    
+    let statusField: UITextField = {
+        let view = UITextField()
+        view.toAutoLayout()
+        view.backgroundColor = .white
+        view.layer.borderColor = UIColor.black.cgColor
+        view.layer.borderWidth = 1
+        view.layer.cornerRadius = 12
+        view.textColor = .black
+        view.font = UIFont(name: "Helvetica-Regular", size: 15)
+        view.addTarget(self, action:#selector(statusTextChanged(_:)), for: .editingChanged)
+        return view
+    }()
     
     private var statusText: String {
         get { return descriptionView.text ?? "Error" }
@@ -26,89 +80,57 @@ class ProfileHeaderView : UIView {
     let saveName = UserDefaults.standard
 
     override func draw(_ rect: CGRect) {
-        
-        let screenWidth = UIScreen.main.bounds.width
-        let screenHeight = UIScreen.main.bounds.height
-        
-        avatarView.frame = CGRect(
-            x: 16,
-            y: screenHeight / 9 + 16,
-            width: screenWidth / 3.5,
-            height: screenWidth / 3.5)
-        avatarView.layer.borderWidth = 3.0
-        avatarView.layer.borderColor = UIColor.white.cgColor
-        avatarView.layer.cornerRadius = screenWidth / 7
-        avatarView.layer.contents = UIImage(named: "hedgehog")?.cgImage
-        avatarView.clipsToBounds = true
-
-        nameView.frame = CGRect(
-            x: screenWidth / 2.75,
-            y: screenHeight / 9 + 27,
-            width: 250,
-            height: 21)
-        nameView.textColor = .black
-        nameView.textAlignment = .justified
-        nameView.font = UIFont(name: "Helvetica-Bold", size : 18)
-        nameView.text = "Ежик Колючий"
-
-        descriptionView.frame = CGRect(
-            x: screenWidth / 2.75,
-            y: screenWidth / 3.5 + screenHeight / 9 - 20,
-            width: 250,
-            height: 18)
-        descriptionView.textColor = .gray
-        descriptionView.textAlignment = .justified
-        descriptionView.font = UIFont(name: "Helvetica-Regular", size : 14)
-        descriptionView.text = "Хожу по лесу"
-        
-        statusButton.frame = CGRect(
-            x: 16,
-            y: 58 + screenWidth / 3.5 + screenHeight / 9,
-            width: screenWidth - 32,
-            height: 50)
-        statusButton.setTitle("Установить статус", for: .normal)
-        statusButton.backgroundColor = .systemBlue
-        statusButton.setTitleColor(.white, for: .normal)
-        statusButton.layer.cornerRadius = 4
-        statusButton.layer.shadowOffset = CGSize(width: 4, height: 4)
-        statusButton.layer.shadowColor = UIColor.black.cgColor
-        statusButton.layer.shadowRadius = 4
-        statusButton.layer.shadowOpacity = 0.7
-        statusButton.addTarget(self, action:#selector(self.statusButtonClicked), for: .touchUpInside)
-        
-        statusField.frame = CGRect(
-            x: screenWidth / 2.75,
-            y: screenWidth / 3.5 + screenHeight / 9 + 3,
-            width: (screenWidth - 16) - screenWidth / 2.75,
-            height: 40)
-        statusField.backgroundColor = .white
-        statusField.layer.borderColor = UIColor.black.cgColor
-        statusField.layer.borderWidth = 1
-        statusField.layer.cornerRadius = 12
-        statusField.textColor = .black
-        statusField.font = UIFont(name: "Helvetica-Regular", size: 15)
-        statusField.addTarget(self, action:#selector(statusTextChanged(_:)), for: .editingChanged)
-
         addSubviews(statusField, statusButton, descriptionView, nameView, avatarView)
+        
+        setupViews()
         
         guard let text = saveName.object(forKey: "descriptionView") as? String else { return }
             descriptionView.text = text
     }
     
-    @objc func statusTextChanged(_ textField: UITextField) {
+    func setupViews() {
+        values = Values()
+        
+        NSLayoutConstraint.activate([
+            avatarView.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 16),
+            avatarView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant:  16),
+            avatarView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/3.5),
+            avatarView.heightAnchor.constraint(equalToConstant: values?.avatarLength ?? 0),
+            
+            
+            nameView.topAnchor.constraint(equalTo: topAnchor, constant:  27),
+            nameView.leftAnchor.constraint(equalTo: leftAnchor, constant: values?.nameLeftBound ?? 0),
+            nameView.widthAnchor.constraint(equalToConstant: 250),
+            nameView.heightAnchor.constraint(equalToConstant: 21),
+            
+            
+            descriptionView.topAnchor.constraint(equalTo: topAnchor, constant: values?.statusUpperBound ?? 0),
+            descriptionView.leftAnchor.constraint(equalTo: leftAnchor, constant: values?.nameLeftBound ?? 0),
+            descriptionView.widthAnchor.constraint(equalToConstant: 250),
+            descriptionView.heightAnchor.constraint(equalToConstant: 18),
+            
+            
+            statusButton.topAnchor.constraint(equalTo: topAnchor, constant: values?.statusButtonUpperBound ?? 0),
+            statusButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
+            statusButton.widthAnchor.constraint(equalToConstant: values?.statusButtonLength ?? 0),
+            statusButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            
+            statusField.topAnchor.constraint(equalTo: topAnchor, constant: values?.statusFieldUpperBound ?? 0),
+            statusField.leftAnchor.constraint(equalTo: leftAnchor, constant: values?.nameLeftBound ?? 0),
+            statusField.widthAnchor.constraint(equalToConstant: values?.statusFieldLength ?? 0),
+            statusField.heightAnchor.constraint(equalToConstant: 40)
+        ])
+        
+        avatarView.layer.cornerRadius = values?.avatarCornerRadius ?? 0
+    }
+    
+    @objc public func statusTextChanged(_ textField: UITextField) {
         statusText = textField.text ?? "Error"
     }
 
-    @objc func statusButtonClicked() {
+    @objc public func statusButtonClicked() {
         saveName.set(descriptionView.text, forKey: "descriptionView")
         print(descriptionView.text ?? "Error")
-    }
-    
-    
-}
-
-public extension UIView {
-    func addSubviews(_ subviews: UIView...) {
-            subviews.forEach { addSubview($0) }
     }
 }

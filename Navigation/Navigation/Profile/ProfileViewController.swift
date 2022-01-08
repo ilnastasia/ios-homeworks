@@ -2,14 +2,25 @@
 import Foundation
 import UIKit
 
-
-class ProfileViewController : UIViewController {
+class ProfileViewController: UIViewController {
     
-    var profileHeadView : ProfileHeaderView?
-    var feedController : FeedViewController?
+    var profileHeadView: ProfileHeaderView?
+    var feedController: FeedViewController?
+    var values: Values?
     
-    let screenWidth = UIScreen.main.bounds.width
-    let screenHeight = UIScreen.main.bounds.height
+    let someButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.toAutoLayout()
+        button.setTitle("Кнопка", for: .normal)
+        button.backgroundColor = .systemBlue
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 4
+        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowRadius = 4
+        button.layer.shadowOpacity = 0.7
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,54 +29,26 @@ class ProfileViewController : UIViewController {
         navigationItem.title = "Мой профиль"
         
         profileHeadView = ProfileHeaderView()
-        view.addSubview(profileHeadView!)
+        profileHeadView?.toAutoLayout()
+        someButton.toAutoLayout()
+        view.addSubviews(profileHeadView!, someButton)
        
-        UpperBorder()
+        setupViews()
     }
     
-    override func viewWillLayoutSubviews() {
-        profileHeadView!.frame = view.frame
-    }
-    
-    public func UpperBorder() {
+    func setupViews() {
+        values = Values()
         
-        let upperBorderView = UIView()
-         
-        upperBorderView.backgroundColor = .white
-        view.addSubview(upperBorderView)
-
-        upperBorderView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let widthConstraint = NSLayoutConstraint(item: upperBorderView,
-            attribute: .width,
-            relatedBy: .equal,
-            toItem: nil,
-            attribute: .notAnAttribute,
-            multiplier: 1.0, constant: screenWidth)
-
-        let heightConstraint = NSLayoutConstraint(item: upperBorderView,
-            attribute: .height,
-            relatedBy: .equal,
-            toItem: nil,
-            attribute: .notAnAttribute,
-            multiplier: 1.0, constant: screenHeight/9)
-        
-        let horizontalConstraint = NSLayoutConstraint(item: upperBorderView,
-            attribute: .centerX,
-            relatedBy: .equal,
-            toItem: view,
-            attribute: .centerX,
-            multiplier: 1.0,
-            constant: 0)
-        
-        let verticalConstraint = NSLayoutConstraint(item: upperBorderView,
-            attribute: .top,
-            relatedBy: .equal,
-            toItem: view,
-            attribute: .top,
-            multiplier: 1.0,
-            constant: 0)
+        NSLayoutConstraint.activate([
+            profileHeadView!.leftAnchor.constraint(equalTo: view.leftAnchor),
+            profileHeadView!.widthAnchor.constraint(equalToConstant: values?.screenWidth ?? 0),
+            profileHeadView!.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            profileHeadView!.heightAnchor.constraint(equalToConstant: 220),
             
-        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
+            someButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            someButton.leftAnchor.constraint(equalTo: view.leftAnchor),
+            someButton.rightAnchor.constraint(equalTo: view.rightAnchor),
+            someButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
     }
 }

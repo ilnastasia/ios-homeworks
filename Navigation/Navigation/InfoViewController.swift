@@ -2,18 +2,21 @@
 import UIKit
 
 class InfoViewController: UIViewController {
+    
+    let toAlertButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.frame.size.height = 50
+        button.frame.size.width = 200
+        button.setTitle("Открыть алерт", for: .normal)
+        button.backgroundColor = .white
+        button.addTarget(self, action:#selector(toAlertButtonIsClilcked), for: .touchUpInside)
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let toAlertButton = UIButton(type: .system)
-        toAlertButton.frame.size.height = 50
-        toAlertButton.frame.size.width = 200
         toAlertButton.center = view.center
-        toAlertButton.setTitle("Открыть алерт", for: .normal)
-        toAlertButton.backgroundColor = .white
-        toAlertButton.addTarget(self, action:#selector(self.toAlertButtonIsClilcked), for: .touchUpInside)
-        
         view.addSubview(toAlertButton)
     }
     

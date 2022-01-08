@@ -4,7 +4,7 @@ import UIKit
 class FeedViewController: UIViewController {
     
     var postController: PostViewController?
-    var post : Post
+    var post: Post
     
     init(post: Post) {
         self.post = post
@@ -15,6 +15,44 @@ class FeedViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    let stackView : UIStackView = {
+        let view = UIStackView()
+        view.toAutoLayout()
+        view.axis = .vertical
+        view.distribution = .fillEqually
+        view.alignment = .center
+        view.spacing = 10
+        return view
+    }()
+    
+    let firstButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Перейти на пост", for: .normal)
+        button.backgroundColor = .systemBlue
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 4
+        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowRadius = 4
+        button.layer.shadowOpacity = 0.7
+        button.addTarget(self, action:#selector(toPostButtonClicked), for: .touchUpInside)
+        return button
+    }()
+    
+    let secondButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Перейти на пост", for: .normal)
+        button.backgroundColor = .systemBlue
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 4
+        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowRadius = 4
+        button.layer.shadowOpacity = 0.7
+        button.addTarget(self, action:#selector(toPostButtonClicked), for: .touchUpInside)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,68 +61,27 @@ class FeedViewController: UIViewController {
         
         postController = PostViewController()
         postController?.postName = post.title
-
-        let toPostButton = UIButton(type: .system)
-        toPostButton.frame.size.height = 50
-        toPostButton.frame.size.width = 200
-        toPostButton.center = view.center
-        toPostButton.setTitle("Открыть пост", for: .normal)
-        toPostButton.backgroundColor = .systemGray
-        toPostButton.addTarget(self, action:#selector(self.toPostButtonClicked), for: .touchUpInside)
-        view.addSubview(toPostButton)
         
-        UpperBorder()
+        view.addSubviews(stackView)
+        stackView.addArrangedSubview(firstButton)
+        stackView.addArrangedSubview(secondButton)
+        
+        setupViews()
+    }
+    
+    func setupViews() {
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
+            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            stackView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            stackView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            
+            firstButton.widthAnchor.constraint(equalTo: stackView.widthAnchor),
+            secondButton.widthAnchor.constraint(equalTo: stackView.widthAnchor)
+        ])
     }
     
     @objc func toPostButtonClicked() {
         self.navigationController?.pushViewController(postController!, animated: true)
     }
-    
-    func UpperBorder() {
-
-        let upperBorderView = UIView()
-
-        upperBorderView.backgroundColor = .white
-        view.addSubview(upperBorderView)
-
-        let upperBorderWidth = UIScreen.main.bounds.width
-        let upperBorderHeight = UIScreen.main.bounds.height
-
-        upperBorderView.translatesAutoresizingMaskIntoConstraints = false
-
-        let widthConstraint = NSLayoutConstraint(item: upperBorderView,
-            attribute: .width,
-            relatedBy: .equal,
-            toItem: nil,
-            attribute: .notAnAttribute,
-            multiplier: 1.0, constant: upperBorderWidth)
-
-        let heightConstraint = NSLayoutConstraint(item: upperBorderView,
-            attribute: .height,
-            relatedBy: .equal,
-            toItem: nil,
-            attribute: .notAnAttribute,
-            multiplier: 1.0, constant: upperBorderHeight/9)
-
-        let horizontalConstraint = NSLayoutConstraint(item: upperBorderView,
-            attribute: .centerX,
-            relatedBy: .equal,
-            toItem: view,
-            attribute: .centerX,
-            multiplier: 1.0,
-            constant: 0)
-
-        let verticalConstraint = NSLayoutConstraint(item: upperBorderView,
-            attribute: .top,
-            relatedBy: .equal,
-            toItem: view,
-            attribute: .top,
-            multiplier: 1.0,
-            constant: 0)
-
-        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
-    }
 }
-
-
-
