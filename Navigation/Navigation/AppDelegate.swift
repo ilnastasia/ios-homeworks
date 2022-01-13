@@ -8,6 +8,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let feedController = FeedViewController(post: Post(title: "Пост"))
     let profilecController = ProfileViewController()
+    let logInController = LogInViewController()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -30,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         userFeedItem.image = UIImage(systemName: "scroll.fill")
         userFeed.tabBarItem = userFeedItem
         
-        let userProfile = UINavigationController(rootViewController: profilecController)
+        let userProfile = UINavigationController(rootViewController: logInController)
         let userProfileItem = UITabBarItem()
         userProfileItem.title = "Профиль"
         userProfileItem.image = UIImage(systemName: "person.fill")
