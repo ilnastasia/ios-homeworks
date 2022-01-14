@@ -7,13 +7,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     let feedController = FeedViewController(post: Post(title: "Пост"))
-    let profilecController = ProfileViewController()
+    let profileController = ProfileViewController()
     let logInController = LogInViewController()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         let barAppearance = UINavigationBarAppearance()
-        barAppearance.backgroundColor = .white
+        barAppearance.backgroundColor = .systemGray6
 
         let navigationBar = UINavigationBar.appearance()
         navigationBar.standardAppearance = barAppearance
@@ -22,8 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         
         let tabbarController = UITabBarController()
-        UITabBar.appearance().backgroundColor = .white
-        
+        UITabBar.appearance().backgroundColor = .systemGray6
         
         let userFeed = UINavigationController(rootViewController: feedController)
         let userFeedItem = UITabBarItem()

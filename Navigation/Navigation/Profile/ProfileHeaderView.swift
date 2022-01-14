@@ -19,7 +19,7 @@ class ProfileHeaderView: UIView {
         view.toAutoLayout()
         view.layer.borderWidth = 3.0
         view.layer.borderColor = UIColor.white.cgColor
-        view.layer.contents = UIImage(named: "hedgehog")?.cgImage
+        view.image = UIImage(named: "hedgehog")
         view.clipsToBounds = true
         return view
     }()
