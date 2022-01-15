@@ -7,14 +7,22 @@ class LogInViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        registerForKeyboardNotifications()
+        tapToHideKeyboard()
 
         view.backgroundColor = .white
-        view.addSubviews(logoView, logInStackView, loginButton)
+        view.addSubviews(scrollView)
+        scrollView.addSubviews(logoView, logInStackView,  loginButton)
 
         logInStackView.addArrangedSubview(loginTextField)
         logInStackView.addArrangedSubview(passwordTextField)
         
         setupViews()
+    }
+    
+    deinit {
+        removeKeyboardNotifications()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -94,6 +102,15 @@ class LogInViewController: UIViewController {
         return button
     }()
     
+    let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.backgroundColor = .clear
+        scrollView.showsVerticalScrollIndicator = true
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.toAutoLayout()
+        return scrollView
+    }()
+    
     func setupViews() {
         NSLayoutConstraint.activate([
             logoView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 120),
@@ -118,9 +135,53 @@ class LogInViewController: UIViewController {
             loginButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             loginButton.heightAnchor.constraint(equalToConstant: 50)
         ])
+        
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            scrollView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
     }
     
     @objc func toProfileButtonClicked() {
         self.navigationController?.pushViewController(profileController, animated: true)
     }
+    
+    func registerForKeyboardNotifications() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(keyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func removeKeyboardNotifications() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        notificationCenter.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    @objc private func keyboardShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height / 2
+            }
+        }
+    }
+    
+    @objc private func keyboardHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
+    
+    @objc func tapToHideKeyboard() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+    
 }
