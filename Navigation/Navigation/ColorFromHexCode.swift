@@ -30,4 +30,5 @@ extension UIColor {
     }
 }
 
-let VKColorSet = UIColor(hex: "#4885ccff")
+let VKColorSetForNormal = UIColor(hex: "#4885ccff")
+let VKColorForDifStates = UIColor(hex: "#4885cccc")

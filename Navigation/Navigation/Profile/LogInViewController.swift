@@ -62,7 +62,7 @@ class LogInViewController: UIViewController {
         view.textColor = .black
         view.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         view.autocapitalizationType = .none
-        view.tintColor = .black
+        view.tintColor = VKColorSetForNormal
         view.placeholder = "Email or phone"
         view.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: view.frame.height))
         view.leftViewMode = .always
@@ -78,7 +78,7 @@ class LogInViewController: UIViewController {
         view.textColor = .black
         view.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         view.autocapitalizationType = .none
-        view.tintColor = .black
+        view.tintColor = VKColorSetForNormal
         view.placeholder = "Password"
         view.isSecureTextEntry = true
         view.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: view.frame.height))
@@ -91,14 +91,15 @@ class LogInViewController: UIViewController {
     }()
     
     let loginButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.backgroundColor = VKColorSet
+        let button = UIButton(type: .system)
         button.toAutoLayout()
         button.layer.cornerRadius = 10
         button.setTitle("Log In", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.addTarget(self, action:#selector(toProfileButtonClicked), for: .touchUpInside)
-        //button.backgroundColor = UIColor(patternImage: UIImage(named: "pixel")!)
+        button.setBackgroundImage(UIImage(named: "pixel"), for: .normal)
+        button.setBackgroundColor(color: VKColorForDifStates ?? .systemBlue, forState: [.highlighted, .selected, .disabled])
+        button.layer.masksToBounds = true
         return button
     }()
     

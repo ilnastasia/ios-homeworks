@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5D6B5F98276A240200C85958 /* PostInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6B5F97276A240200C85958 /* PostInfo.swift */; };
-		5D859B49278A339F0090F56F /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D859B48278A339F0090F56F /* UIViewExtension.swift */; };
+		5D859B49278A339F0090F56F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D859B48278A339F0090F56F /* Extensions.swift */; };
 		5D86E6F42753C17E00757705 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D86E6F32753C17E00757705 /* AppDelegate.swift */; };
 		5D86E6F82753C17E00757705 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D86E6F72753C17E00757705 /* ViewController.swift */; };
 		5D86E6FD2753C18000757705 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D86E6FC2753C18000757705 /* Assets.xcassets */; };
@@ -42,7 +42,7 @@
 
 /* Begin PBXFileReference section */
 		5D6B5F97276A240200C85958 /* PostInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInfo.swift; sourceTree = "<group>"; };
-		5D859B48278A339F0090F56F /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		5D859B48278A339F0090F56F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5D86E6F02753C17E00757705 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D86E6F32753C17E00757705 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D86E6F72753C17E00757705 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 				5DE1C45C27580706006903A0 /* InfoViewController.swift */,
 				5D6B5F97276A240200C85958 /* PostInfo.swift */,
 				5DF380852789F7A9009E5FAD /* Values.swift */,
-				5D859B48278A339F0090F56F /* UIViewExtension.swift */,
+				5D859B48278A339F0090F56F /* Extensions.swift */,
 				5DD84B062790B573006ED396 /* ColorFromHexCode.swift */,
 			);
 			path = Navigation;
@@ -264,7 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D859B49278A339F0090F56F /* UIViewExtension.swift in Sources */,
+				5D859B49278A339F0090F56F /* Extensions.swift in Sources */,
 				5D86E6F82753C17E00757705 /* ViewController.swift in Sources */,
 				5DD84B072790B573006ED396 /* ColorFromHexCode.swift in Sources */,
 				5D86E6F42753C17E00757705 /* AppDelegate.swift in Sources */,
