@@ -24,7 +24,6 @@ class ProfileViewController: UIViewController {
         tableView.toAutoLayout()
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: CellReuseIdentifiers.postInfo.rawValue)
         tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: HeaderFooterReuseIdentifiers.headerID.rawValue)
-        tableView.separatorInsetReference = .fromCellEdges
         return tableView
     }()
     

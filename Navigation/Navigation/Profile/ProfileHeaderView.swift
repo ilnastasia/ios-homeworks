@@ -4,10 +4,6 @@ import UIKit
 
 class ProfileHeaderView: UITableViewHeaderFooterView {
     
-//    override init (frame: CGRect) {
-//        super.init(frame: frame)
-//    }
-    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
     }

@@ -36,7 +36,6 @@ class PostTableViewCell: UITableViewCell {
         label.toAutoLayout()
         label.font = UIFont(name: "Helvetica-Regular", size : 16)
         label.textColor = .black
-        label.text = "Likes: "
         return label
     }()
     
@@ -45,7 +44,6 @@ class PostTableViewCell: UITableViewCell {
         label.toAutoLayout()
         label.font = UIFont(name: "Helvetica-Regular", size : 16)
         label.textColor = .black
-        label.text = "Views: "
         return label
     }()
     
@@ -94,15 +92,15 @@ class PostTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             likesLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
             likesLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
-            likesLabel.heightAnchor.constraint(equalToConstant: 20)
+            likesLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
         ])
         
         NSLayoutConstraint.activate([
             viewsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
             viewsLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
-            viewsLabel.heightAnchor.constraint(equalToConstant: 20)
+            viewsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
         ])
         
-        contentView.heightAnchor.constraint(equalTo: descriptionLabel.heightAnchor, constant: (values?.screenWidth ?? 0) + 100).isActive = true
+        contentView.heightAnchor.constraint(equalTo: descriptionLabel.heightAnchor, constant: (values?.screenWidth ?? 0) + 120).isActive = true
     }
 }

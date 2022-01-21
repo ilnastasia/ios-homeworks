@@ -22,7 +22,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         
         let tabbarController = UITabBarController()
-        UITabBar.appearance().backgroundColor = .systemGray6
+        
+        let tabbarAppearance = UITabBarAppearance()
+        tabbarAppearance.backgroundColor = .systemGray6
+        
+        let tabbar = UITabBar.appearance()
+        tabbar.standardAppearance = tabbarAppearance
+        tabbar.scrollEdgeAppearance = tabbarAppearance
         
         let userFeed = UINavigationController(rootViewController: feedController)
         let userFeedItem = UITabBarItem()
