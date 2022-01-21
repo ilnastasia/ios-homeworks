@@ -6,7 +6,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    let feedController = FeedViewController(post: Post(title: "Пост"))
+    let feedController = FeedViewController(feedPost: FeedPost(title: "Пост"))
     let profileController = ProfileViewController()
     let logInController = LogInViewController()
     
@@ -43,7 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         return true
     }
-
 }
 
 

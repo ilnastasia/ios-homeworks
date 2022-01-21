@@ -2,10 +2,14 @@
 import Foundation
 import UIKit
 
-class ProfileHeaderView: UIView {
+class ProfileHeaderView: UITableViewHeaderFooterView {
     
-    override init (frame: CGRect) {
-        super.init(frame: frame)
+//    override init (frame: CGRect) {
+//        super.init(frame: frame)
+//    }
+    
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
     }
     
     required init?(coder: NSCoder) {
