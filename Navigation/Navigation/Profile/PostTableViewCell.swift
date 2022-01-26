@@ -2,7 +2,6 @@
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
-    var values: Values?
     
     let authorLabel: UILabel = {
         let label = UILabel()
@@ -68,39 +67,30 @@ class PostTableViewCell: UITableViewCell {
     }
     
     func setupViews() {
-        values = Values()
         
         NSLayoutConstraint.activate([
             authorLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             authorLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
-            authorLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16)
-        ])
-
-        NSLayoutConstraint.activate([
+            authorLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
+            
             postImageView.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 12),
             postImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            postImageView.heightAnchor.constraint(equalToConstant: values?.screenWidth ?? 0),
-            postImageView.widthAnchor.constraint(equalToConstant: values?.screenWidth ?? 0)
-        ])
-        
-        NSLayoutConstraint.activate([
+            postImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
+            postImageView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
+            
             descriptionLabel.topAnchor.constraint(equalTo: postImageView.bottomAnchor, constant: 16),
             descriptionLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
             descriptionLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
-        ])
-        
-        NSLayoutConstraint.activate([
+            
             likesLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
             likesLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
-            likesLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
-        ])
-        
-        NSLayoutConstraint.activate([
+            likesLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+            
             viewsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
             viewsLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16),
             viewsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
         ])
         
-        contentView.heightAnchor.constraint(equalTo: descriptionLabel.heightAnchor, constant: (values?.screenWidth ?? 0) + 120).isActive = true
+        contentView.heightAnchor.constraint(equalTo: descriptionLabel.heightAnchor, constant: UIScreen.main.bounds.width + 120).isActive = true
     }
 }

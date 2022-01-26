@@ -4,16 +4,6 @@ import UIKit
 
 class ProfileHeaderView: UITableViewHeaderFooterView {
     
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    var values: Values?
-    
     let avatarView: UIImageView = {
         let view = UIImageView()
         view.toAutoLayout()
@@ -72,6 +62,14 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return view
     }()
     
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private var statusText: String {
         get { return descriptionView.text ?? "Error" }
         set { descriptionView.text = newValue }
@@ -89,40 +87,38 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     }
     
     func setupViews() {
-        values = Values()
-        
         NSLayoutConstraint.activate([
             avatarView.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 16),
             avatarView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant:  16),
             avatarView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/3.5),
-            avatarView.heightAnchor.constraint(equalToConstant: values?.avatarLength ?? 0),
+            avatarView.heightAnchor.constraint(equalToConstant: Constants.avatarLength),
             
             
             nameView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant:  27),
-            nameView.leftAnchor.constraint(equalTo: leftAnchor, constant: values?.nameLeftBound ?? 0),
+            nameView.leftAnchor.constraint(equalTo: leftAnchor, constant: Constants.nameLeftBound),
             nameView.widthAnchor.constraint(equalToConstant: 250),
             nameView.heightAnchor.constraint(equalToConstant: 21),
             
             
-            descriptionView.topAnchor.constraint(equalTo: topAnchor, constant: values?.statusUpperBound ?? 0),
-            descriptionView.leftAnchor.constraint(equalTo: leftAnchor, constant: values?.nameLeftBound ?? 0),
+            descriptionView.topAnchor.constraint(equalTo: topAnchor, constant: Constants.statusUpperBound),
+            descriptionView.leftAnchor.constraint(equalTo: leftAnchor, constant: Constants.nameLeftBound),
             descriptionView.widthAnchor.constraint(equalToConstant: 250),
             descriptionView.heightAnchor.constraint(equalToConstant: 18),
             
             
-            statusButton.topAnchor.constraint(equalTo: topAnchor, constant: values?.statusButtonUpperBound ?? 0),
+            statusButton.topAnchor.constraint(equalTo: topAnchor, constant: Constants.statusButtonUpperBound),
             statusButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
-            statusButton.widthAnchor.constraint(equalToConstant: values?.statusButtonLength ?? 0),
+            statusButton.widthAnchor.constraint(equalToConstant: Constants.statusButtonLength),
             statusButton.heightAnchor.constraint(equalToConstant: 50),
             
             
-            statusField.topAnchor.constraint(equalTo: topAnchor, constant: values?.statusFieldUpperBound ?? 0),
-            statusField.leftAnchor.constraint(equalTo: leftAnchor, constant: values?.nameLeftBound ?? 0),
-            statusField.widthAnchor.constraint(equalToConstant: values?.statusFieldLength ?? 0),
+            statusField.topAnchor.constraint(equalTo: topAnchor, constant: Constants.statusFieldUpperBound),
+            statusField.leftAnchor.constraint(equalTo: leftAnchor, constant: Constants.nameLeftBound),
+            statusField.widthAnchor.constraint(equalToConstant: Constants.statusFieldLength),
             statusField.heightAnchor.constraint(equalToConstant: 40)
         ])
         
-        avatarView.layer.cornerRadius = values?.avatarCornerRadius ?? 0
+        avatarView.layer.cornerRadius = Constants.avatarCornerRadius
     }
     
     @objc public func statusTextChanged(_ textField: UITextField) {

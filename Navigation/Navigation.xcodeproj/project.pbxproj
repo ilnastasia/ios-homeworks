@@ -21,7 +21,7 @@
 		5DD84B072790B573006ED396 /* ColorFromHexCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD84B062790B573006ED396 /* ColorFromHexCode.swift */; };
 		5DD84B092790E2CB006ED396 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD84B082790E2CB006ED396 /* LogInViewController.swift */; };
 		5DE1C45D27580706006903A0 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE1C45C27580706006903A0 /* InfoViewController.swift */; };
-		5DF380862789F7A9009E5FAD /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF380852789F7A9009E5FAD /* Values.swift */; };
+		5DF380862789F7A9009E5FAD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF380852789F7A9009E5FAD /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +60,7 @@
 		5DD84B062790B573006ED396 /* ColorFromHexCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorFromHexCode.swift; sourceTree = "<group>"; };
 		5DD84B082790E2CB006ED396 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		5DE1C45C27580706006903A0 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
-		5DF380852789F7A9009E5FAD /* Values.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Values.swift; sourceTree = "<group>"; };
+		5DF380852789F7A9009E5FAD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +119,7 @@
 				5DAFCAC8275435D4001461CE /* PostViewController.swift */,
 				5DE1C45C27580706006903A0 /* InfoViewController.swift */,
 				5D6B5F97276A240200C85958 /* PostInfo.swift */,
-				5DF380852789F7A9009E5FAD /* Values.swift */,
+				5DF380852789F7A9009E5FAD /* Constants.swift */,
 				5D859B48278A339F0090F56F /* Extensions.swift */,
 				5DD84B062790B573006ED396 /* ColorFromHexCode.swift */,
 			);
@@ -279,7 +279,7 @@
 				5DD84B092790E2CB006ED396 /* LogInViewController.swift in Sources */,
 				5DC60BE22768E41B00A9D2A0 /* ProfileViewController.swift in Sources */,
 				5DAFCAC9275435D4001461CE /* PostViewController.swift in Sources */,
-				5DF380862789F7A9009E5FAD /* Values.swift in Sources */,
+				5DF380862789F7A9009E5FAD /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
