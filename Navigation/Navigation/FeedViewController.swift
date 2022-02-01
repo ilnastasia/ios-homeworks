@@ -4,10 +4,10 @@ import UIKit
 class FeedViewController: UIViewController {
     
     var postController: PostViewController?
-    var post: Post
+    var feedPost: FeedPost
     
-    init(post: Post) {
-        self.post = post
+    init(feedPost: FeedPost) {
+        self.feedPost = feedPost
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -60,7 +60,7 @@ class FeedViewController: UIViewController {
         navigationItem.title = "Лента"
         
         postController = PostViewController()
-        postController?.postName = post.title
+        postController?.postName = feedPost.title
         
         view.addSubviews(stackView)
         stackView.addArrangedSubview(firstButton)
