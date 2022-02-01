@@ -22,23 +22,27 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isTranslucent = false
-        navigationItem.title = "Мой профиль"
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        
+
         view.addSubviews(tableView)
-        setupViews()
+        setupTableView()
+        setupNavigationController()
     }
     
-    func setupViews() {
+    func setupTableView() {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             tableView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor)
         ])
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    func setupNavigationController() {
+        navigationController?.navigationBar.isTranslucent = false
+        navigationItem.title = "Мой профиль"
     }
 }
 
