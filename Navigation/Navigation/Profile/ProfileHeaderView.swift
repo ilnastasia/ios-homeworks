@@ -10,6 +10,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         view.layer.borderWidth = 3.0
         view.layer.borderColor = UIColor.white.cgColor
         view.image = UIImage(named: "hedgehog")
+        view.layer.cornerRadius = Constants.avatarCornerRadius
         view.clipsToBounds = true
         return view
     }()
@@ -118,7 +119,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
             statusField.heightAnchor.constraint(equalToConstant: 40)
         ])
         
-        avatarView.layer.cornerRadius = Constants.avatarCornerRadius
+        
     }
     
     @objc public func statusTextChanged(_ textField: UITextField) {

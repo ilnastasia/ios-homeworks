@@ -10,4 +10,5 @@ struct Constants {
     static let statusButtonUpperBound = (UIScreen.main.bounds.width / 3.5) + 58
     static let statusFieldUpperBound = (UIScreen.main.bounds.width / 3.5) + 3
     static let statusFieldLength = UIScreen.main.bounds.width - UIScreen.main.bounds.width / 3.5 - 48
+    static let photoSectionImageView = (UIScreen.main.bounds.width - 48) / 4
 }
