@@ -2,6 +2,7 @@
 import UIKit
 
 class PhotosTableViewCell: UITableViewCell {
+    
     let nameLabel: UILabel = {
         let label = UILabel()
         label.toAutoLayout()

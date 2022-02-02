@@ -24,10 +24,22 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        view.backgroundColor = .systemGray6
         view.addSubviews(tableView)
         setupTableView()
-        setupNavigationController()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     func setupTableView() {
@@ -40,11 +52,6 @@ class ProfileViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-    }
-    
-    func setupNavigationController() {
-        navigationController?.navigationBar.isTranslucent = false
-        navigationItem.title = "Мой профиль"
     }
 }
 
@@ -68,8 +75,8 @@ extension ProfileViewController: UITableViewDataSource {
                 fatalError()
             }
             
-            let data = postInfo[indexPath.row]
-            cell2.update(author: data.author, description: data.description, image: data.image, likes: data.likes, views: data.views)
+            let post = postInfo[indexPath.row]
+            cell2.update(with: post)
             return cell2
         }
     }
@@ -107,5 +114,12 @@ extension ProfileViewController: UITableViewDelegate {
         } else {
             return 0
         } 
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let photosViewController = PhotosViewController()
+        if indexPath.section == 0 {
+            navigationController?.pushViewController(photosViewController, animated: true)
+        }
     }
 }
