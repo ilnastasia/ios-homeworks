@@ -17,7 +17,6 @@ class PhotosTableViewCell: UITableViewCell {
         view.toAutoLayout()
         view.contentMode = .scaleAspectFill
         view.backgroundColor = .black
-        view.image = UIImage(named: "sverhi1")
         view.layer.cornerRadius = 6
         view.clipsToBounds = true
         return view
@@ -28,7 +27,6 @@ class PhotosTableViewCell: UITableViewCell {
         view.toAutoLayout()
         view.contentMode = .scaleAspectFill
         view.backgroundColor = .black
-        view.image = UIImage(named: "dog1")
         view.layer.cornerRadius = 6
         view.clipsToBounds = true
         return view
@@ -39,7 +37,6 @@ class PhotosTableViewCell: UITableViewCell {
         view.toAutoLayout()
         view.contentMode = .scaleAspectFill
         view.backgroundColor = .black
-        view.image = UIImage(named: "swiss1")
         view.layer.cornerRadius = 6
         view.clipsToBounds = true
         return view
@@ -50,7 +47,6 @@ class PhotosTableViewCell: UITableViewCell {
         view.toAutoLayout()
         view.contentMode = .scaleAspectFill
         view.backgroundColor = .black
-        view.image = UIImage(named: "mandalorian1")
         view.layer.cornerRadius = 6
         view.clipsToBounds = true
         return view
@@ -69,10 +65,31 @@ class PhotosTableViewCell: UITableViewCell {
         contentView.backgroundColor = .white
         contentView.addSubviews(nameLabel, imageView1, imageView2, imageView3, imageView4, arrowImageView)
         setupViews()
+        setImages()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setImages() {
+        for photo in photosArray {
+            if photo == photosArray[0]{
+                imageView1.image = UIImage(named: photo)
+            }
+            
+            if photo == photosArray[1] {
+                imageView2.image = UIImage(named: photo)
+            }
+            
+            if photo == photosArray[2] {
+                imageView3.image = UIImage(named: photo)
+            }
+            
+            if photo == photosArray[3] {
+                imageView4.image = UIImage(named: photo)
+            }
+        }
     }
 
     func setupViews() {
