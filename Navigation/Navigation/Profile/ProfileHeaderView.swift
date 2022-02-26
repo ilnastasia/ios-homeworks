@@ -10,6 +10,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         view.layer.borderWidth = 3.0
         view.layer.borderColor = UIColor.white.cgColor
         view.image = UIImage(named: "hedgehog")
+        view.layer.cornerRadius = Constants.avatarCornerRadius
         view.clipsToBounds = true
         return view
     }()
@@ -93,32 +94,26 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
             avatarView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/3.5),
             avatarView.heightAnchor.constraint(equalToConstant: Constants.avatarLength),
             
-            
             nameView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant:  27),
             nameView.leftAnchor.constraint(equalTo: leftAnchor, constant: Constants.nameLeftBound),
             nameView.widthAnchor.constraint(equalToConstant: 250),
             nameView.heightAnchor.constraint(equalToConstant: 21),
-            
             
             descriptionView.topAnchor.constraint(equalTo: topAnchor, constant: Constants.statusUpperBound),
             descriptionView.leftAnchor.constraint(equalTo: leftAnchor, constant: Constants.nameLeftBound),
             descriptionView.widthAnchor.constraint(equalToConstant: 250),
             descriptionView.heightAnchor.constraint(equalToConstant: 18),
             
-            
             statusButton.topAnchor.constraint(equalTo: topAnchor, constant: Constants.statusButtonUpperBound),
             statusButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
             statusButton.widthAnchor.constraint(equalToConstant: Constants.statusButtonLength),
             statusButton.heightAnchor.constraint(equalToConstant: 50),
-            
             
             statusField.topAnchor.constraint(equalTo: topAnchor, constant: Constants.statusFieldUpperBound),
             statusField.leftAnchor.constraint(equalTo: leftAnchor, constant: Constants.nameLeftBound),
             statusField.widthAnchor.constraint(equalToConstant: Constants.statusFieldLength),
             statusField.heightAnchor.constraint(equalToConstant: 40)
         ])
-        
-        avatarView.layer.cornerRadius = Constants.avatarCornerRadius
     }
     
     @objc public func statusTextChanged(_ textField: UITextField) {

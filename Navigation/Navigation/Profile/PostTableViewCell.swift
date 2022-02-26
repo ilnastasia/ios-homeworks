@@ -58,14 +58,14 @@ class PostTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func update(author: String, description: String, image: String, likes: Int, views: Int) {
-        authorLabel.text = author
-        postImageView.image = UIImage(named: image)
-        descriptionLabel.text = description
-        likesLabel.text = "Likes: " + String(likes)
-        viewsLabel.text = "Views: " + String(views)
+    public func update(with post: Post) {
+        authorLabel.text = post.author
+        postImageView.image = UIImage(named: post.image)
+        descriptionLabel.text = post.description
+        likesLabel.text = "Likes: " + String(post.likes)
+        viewsLabel.text = "Views: " + String(post.views)
     }
-    
+
     func setupViews() {
         
         NSLayoutConstraint.activate([
