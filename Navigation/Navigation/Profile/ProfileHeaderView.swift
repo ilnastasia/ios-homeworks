@@ -2,9 +2,15 @@
 import Foundation
 import UIKit
 
+protocol TapViewDelegate: AnyObject {
+    func viewDidTapAvatar()
+}
+
 class ProfileHeaderView: UITableViewHeaderFooterView {
     
-    let avatarView: UIImageView = {
+    weak var delegate: TapViewDelegate?
+    
+    lazy var avatarView: UIImageView = {
         let view = UIImageView()
         view.toAutoLayout()
         view.layer.borderWidth = 3.0
@@ -12,8 +18,30 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         view.image = UIImage(named: "hedgehog")
         view.layer.cornerRadius = Constants.avatarCornerRadius
         view.clipsToBounds = true
+        view.isUserInteractionEnabled = true
+        
+        let recognizer = UITapGestureRecognizer()
+        recognizer.addTarget(self, action: #selector(handleTapGesture(_:)))
+        view.addGestureRecognizer(recognizer)
+        
         return view
     }()
+    
+//    let backgroundAnimationView: UIView = {
+//        let view = UIView()
+//        view.toAutoLayout()
+//        view.backgroundColor = .clear
+//        return view
+//    }()
+//    
+//    let backgroundAnimationViewButton: UIButton = {
+//        let button = UIButton()
+//        button.toAutoLayout()
+//        button.setBackgroundImage(UIImage(systemName: "multiply"), for: .normal)
+//        button.tintColor = .black
+//        button.alpha = 0.0
+//        return button
+//    }()
     
     let nameView: UILabel = {
         let view = UILabel()
@@ -79,21 +107,20 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     let saveName = UserDefaults.standard
 
     override func draw(_ rect: CGRect) {
-        addSubviews(statusField, statusButton, descriptionView, nameView, avatarView)
-        
+        addSubviews(statusField, statusButton, descriptionView, nameView)
+
         setupViews()
-        
+
         guard let text = saveName.object(forKey: "descriptionView") as? String else { return }
             descriptionView.text = text
     }
     
+    @objc func handleTapGesture(_ gesture: UITapGestureRecognizer) {
+        delegate?.viewDidTapAvatar()
+    }
+    
     func setupViews() {
         NSLayoutConstraint.activate([
-            avatarView.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 16),
-            avatarView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant:  16),
-            avatarView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/3.5),
-            avatarView.heightAnchor.constraint(equalToConstant: Constants.avatarLength),
-            
             nameView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant:  27),
             nameView.leftAnchor.constraint(equalTo: leftAnchor, constant: Constants.nameLeftBound),
             nameView.widthAnchor.constraint(equalToConstant: 250),
