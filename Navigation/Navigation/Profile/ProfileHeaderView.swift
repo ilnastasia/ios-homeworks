@@ -33,7 +33,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
 //        view.backgroundColor = .clear
 //        return view
 //    }()
-//    
+//
 //    let backgroundAnimationViewButton: UIButton = {
 //        let button = UIButton()
 //        button.toAutoLayout()
@@ -107,7 +107,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     let saveName = UserDefaults.standard
 
     override func draw(_ rect: CGRect) {
-        addSubviews(statusField, statusButton, descriptionView, nameView)
+        addSubviews(statusField, statusButton, descriptionView, nameView, avatarView)
 
         setupViews()
 
@@ -121,6 +121,11 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     func setupViews() {
         NSLayoutConstraint.activate([
+            avatarView.leftAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leftAnchor, constant: 16),
+            avatarView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant:  16),
+            avatarView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1/3.5),
+            avatarView.heightAnchor.constraint(equalToConstant: Constants.avatarLength),
+            
             nameView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant:  27),
             nameView.leftAnchor.constraint(equalTo: leftAnchor, constant: Constants.nameLeftBound),
             nameView.widthAnchor.constraint(equalToConstant: 250),
@@ -139,7 +144,17 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
             statusField.topAnchor.constraint(equalTo: topAnchor, constant: Constants.statusFieldUpperBound),
             statusField.leftAnchor.constraint(equalTo: leftAnchor, constant: Constants.nameLeftBound),
             statusField.widthAnchor.constraint(equalToConstant: Constants.statusFieldLength),
-            statusField.heightAnchor.constraint(equalToConstant: 40)
+            statusField.heightAnchor.constraint(equalToConstant: 40),
+          
+//            backgroundAnimationView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
+//            backgroundAnimationView.leftAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leftAnchor),
+//            backgroundAnimationView.rightAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.rightAnchor),
+//            backgroundAnimationView.heightAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.heightAnchor),
+//            
+//            backgroundAnimationViewButton.topAnchor.constraint(equalTo: backgroundAnimationView.topAnchor, constant: 16),
+//            backgroundAnimationViewButton.rightAnchor.constraint(equalTo: backgroundAnimationView.rightAnchor, constant: -16),
+//            backgroundAnimationViewButton.widthAnchor.constraint(equalToConstant: 50),
+//            backgroundAnimationViewButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     

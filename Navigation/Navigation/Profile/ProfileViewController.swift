@@ -31,7 +31,7 @@ class ProfileViewController: UIViewController, TapViewDelegate {
         view.backgroundColor = .clear
         return view
     }()
-    
+
     let backgroundAnimationViewButton: UIButton = {
         let button = UIButton()
         button.toAutoLayout()
@@ -44,33 +44,24 @@ class ProfileViewController: UIViewController, TapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
         profileHeader.delegate = self
         view.backgroundColor = .systemGray6
-        view.addSubviews(tableView, backgroundAnimationView, profileHeader.avatarView)
-        backgroundAnimationView.addSubviews(backgroundAnimationViewButton)
+        view.addSubviews(tableView, profileHeader.avatarView)
         setupTableView()
     }
     
     @objc func viewDidTapAvatar() {
         print("avatar tapped")
-        
-        
+        self.view.addSubview(self.backgroundAnimationView)
+        self.backgroundAnimationView.addSubviews(self.backgroundAnimationViewButton)
+        setupAnimateViews()
         
         UIView.animateKeyframes(withDuration: 1.0, delay: 0.0, animations: {
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5) {
-//                self.profileHeader.backgroundAnimationView.center = self.view.center
-//                self.profileHeader.backgroundAnimationView.transform = CGAffineTransform(scaleX: 4, y: 10)
-                
-                
                 self.backgroundAnimationView.backgroundColor = .white
                 self.backgroundAnimationView.alpha = 0.5
                 self.profileHeader.avatarView.center = self.view.center
                 self.profileHeader.avatarView.transform = CGAffineTransform(scaleX: 3.5, y: 3.5)
-                //self.profileHeader.avatarView.layer.cornerRadius = 0
-                //self.profileHeader.avatarView.layer.borderWidth = 0
             }
             
             UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.3) {
@@ -85,8 +76,6 @@ class ProfileViewController: UIViewController, TapViewDelegate {
             self.backgroundAnimationView.alpha = 0.0
             self.profileHeader.avatarView.transform = CGAffineTransform.identity
             self.profileHeader.avatarView.center = startCenter
-            self.backgroundAnimationViewButton.alpha = 0.0
-            self.profileHeader.avatarView.layer.removeAllAnimations()
         })
     }
     
@@ -108,25 +97,29 @@ class ProfileViewController: UIViewController, TapViewDelegate {
             tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             tableView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor),
-            
-            backgroundAnimationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            backgroundAnimationView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
-            backgroundAnimationView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-            backgroundAnimationView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor),
-            
+
             profileHeader.avatarView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 16),
             profileHeader.avatarView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant:  16),
             profileHeader.avatarView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1/3.5),
             profileHeader.avatarView.heightAnchor.constraint(equalToConstant: Constants.avatarLength),
+        ])
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    func setupAnimateViews() {
+        NSLayoutConstraint.activate([
+            backgroundAnimationView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            backgroundAnimationView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            backgroundAnimationView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            backgroundAnimationView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor),
             
             backgroundAnimationViewButton.topAnchor.constraint(equalTo: backgroundAnimationView.topAnchor, constant: 16),
             backgroundAnimationViewButton.rightAnchor.constraint(equalTo: backgroundAnimationView.rightAnchor, constant: -16),
             backgroundAnimationViewButton.widthAnchor.constraint(equalToConstant: 50),
             backgroundAnimationViewButton.heightAnchor.constraint(equalToConstant: 50)
         ])
-        
-        tableView.delegate = self
-        tableView.dataSource = self
     }
 }
 
