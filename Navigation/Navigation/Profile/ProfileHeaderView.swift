@@ -2,9 +2,15 @@
 import Foundation
 import UIKit
 
+protocol TapViewDelegate: AnyObject {
+    func viewDidTapAvatar()
+}
+
 class ProfileHeaderView: UITableViewHeaderFooterView {
     
-    let avatarView: UIImageView = {
+    weak var delegate: TapViewDelegate?
+    
+    lazy var avatarView: UIImageView = {
         let view = UIImageView()
         view.toAutoLayout()
         view.layer.borderWidth = 3.0
@@ -12,8 +18,30 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         view.image = UIImage(named: "hedgehog")
         view.layer.cornerRadius = Constants.avatarCornerRadius
         view.clipsToBounds = true
+        view.isUserInteractionEnabled = true
+        
+        let recognizer = UITapGestureRecognizer()
+        recognizer.addTarget(self, action: #selector(handleTapGesture(_:)))
+        view.addGestureRecognizer(recognizer)
+        
         return view
     }()
+    
+//    let backgroundAnimationView: UIView = {
+//        let view = UIView()
+//        view.toAutoLayout()
+//        view.backgroundColor = .clear
+//        return view
+//    }()
+//
+//    let backgroundAnimationViewButton: UIButton = {
+//        let button = UIButton()
+//        button.toAutoLayout()
+//        button.setBackgroundImage(UIImage(systemName: "multiply"), for: .normal)
+//        button.tintColor = .black
+//        button.alpha = 0.0
+//        return button
+//    }()
     
     let nameView: UILabel = {
         let view = UILabel()
@@ -80,18 +108,22 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
 
     override func draw(_ rect: CGRect) {
         addSubviews(statusField, statusButton, descriptionView, nameView, avatarView)
-        
+
         setupViews()
-        
+
         guard let text = saveName.object(forKey: "descriptionView") as? String else { return }
             descriptionView.text = text
     }
     
+    @objc func handleTapGesture(_ gesture: UITapGestureRecognizer) {
+        delegate?.viewDidTapAvatar()
+    }
+    
     func setupViews() {
         NSLayoutConstraint.activate([
-            avatarView.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 16),
-            avatarView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant:  16),
-            avatarView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/3.5),
+            avatarView.leftAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leftAnchor, constant: 16),
+            avatarView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant:  16),
+            avatarView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1/3.5),
             avatarView.heightAnchor.constraint(equalToConstant: Constants.avatarLength),
             
             nameView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant:  27),
@@ -112,7 +144,17 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
             statusField.topAnchor.constraint(equalTo: topAnchor, constant: Constants.statusFieldUpperBound),
             statusField.leftAnchor.constraint(equalTo: leftAnchor, constant: Constants.nameLeftBound),
             statusField.widthAnchor.constraint(equalToConstant: Constants.statusFieldLength),
-            statusField.heightAnchor.constraint(equalToConstant: 40)
+            statusField.heightAnchor.constraint(equalToConstant: 40),
+          
+//            backgroundAnimationView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
+//            backgroundAnimationView.leftAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leftAnchor),
+//            backgroundAnimationView.rightAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.rightAnchor),
+//            backgroundAnimationView.heightAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.heightAnchor),
+//            
+//            backgroundAnimationViewButton.topAnchor.constraint(equalTo: backgroundAnimationView.topAnchor, constant: 16),
+//            backgroundAnimationViewButton.rightAnchor.constraint(equalTo: backgroundAnimationView.rightAnchor, constant: -16),
+//            backgroundAnimationViewButton.widthAnchor.constraint(equalToConstant: 50),
+//            backgroundAnimationViewButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
