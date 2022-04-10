@@ -6,7 +6,6 @@ class ProfileViewController: UIViewController, TapViewDelegate {
     
     let profileHeader = ProfileHeaderView()
     
-
     fileprivate enum CellReuseIdentifiers: String {
         case postInfo = "PostCellReuse"
         case photos = "Photos"
@@ -45,7 +44,13 @@ class ProfileViewController: UIViewController, TapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         profileHeader.delegate = self
+        
+        #if DEBUG
         view.backgroundColor = .systemGray6
+        #else
+        view.backgroundColor = .red
+        #endif
+        
         view.addSubviews(tableView, profileHeader.avatarView)
         setupTableView()
     }

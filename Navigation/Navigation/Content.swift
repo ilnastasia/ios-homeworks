@@ -1,10 +1,6 @@
 
 import Foundation
 
-struct FeedPost {
-    var title: String
-}
-
 struct Post {
     var author: String
     var description: String
