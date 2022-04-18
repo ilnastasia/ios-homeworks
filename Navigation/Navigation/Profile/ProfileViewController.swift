@@ -51,12 +51,13 @@ class ProfileViewController: UIViewController, TapViewDelegate {
         view.backgroundColor = .red
         #endif
         
-        view.addSubviews(tableView, profileHeader.avatarView)
+        view.addSubviews(tableView)
+        //view.addSubview(profileHeader.avatarView)
         setupTableView()
     }
     
     @objc func viewDidTapAvatar() {
-        print("avatar tapped")
+        //print("avatar tapped")
         self.view.addSubview(self.backgroundAnimationView)
         self.backgroundAnimationView.addSubviews(self.backgroundAnimationViewButton)
         setupAnimateViews()
@@ -65,8 +66,8 @@ class ProfileViewController: UIViewController, TapViewDelegate {
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5) {
                 self.backgroundAnimationView.backgroundColor = .white
                 self.backgroundAnimationView.alpha = 0.5
-                self.profileHeader.avatarView.center = self.view.center
-                self.profileHeader.avatarView.transform = CGAffineTransform(scaleX: 3.5, y: 3.5)
+                //self.profileHeader.avatarView.center = self.view.center
+                //self.profileHeader.avatarView.transform = CGAffineTransform(scaleX: 3.5, y: 3.5)
             }
             
             UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.3) {
@@ -103,10 +104,10 @@ class ProfileViewController: UIViewController, TapViewDelegate {
             tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             tableView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor),
 
-            profileHeader.avatarView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 16),
-            profileHeader.avatarView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant:  16),
-            profileHeader.avatarView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1/3.5),
-            profileHeader.avatarView.heightAnchor.constraint(equalToConstant: Constants.avatarLength),
+//            profileHeader.avatarView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 16),
+//            profileHeader.avatarView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant:  16),
+//            profileHeader.avatarView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1/3.5),
+//            profileHeader.avatarView.heightAnchor.constraint(equalToConstant: Constants.avatarLength),
         ])
         
         tableView.delegate = self

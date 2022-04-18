@@ -1,6 +1,7 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
 protocol TapViewDelegate: AnyObject {
     func viewDidTapAvatar()
@@ -12,7 +13,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     lazy var avatarView: UIImageView = {
         let view = UIImageView()
-        view.toAutoLayout()
         view.layer.borderWidth = 3.0
         view.layer.borderColor = UIColor.white.cgColor
         view.image = UIImage(named: "hedgehog")
@@ -27,25 +27,8 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return view
     }()
     
-//    let backgroundAnimationView: UIView = {
-//        let view = UIView()
-//        view.toAutoLayout()
-//        view.backgroundColor = .clear
-//        return view
-//    }()
-//
-//    let backgroundAnimationViewButton: UIButton = {
-//        let button = UIButton()
-//        button.toAutoLayout()
-//        button.setBackgroundImage(UIImage(systemName: "multiply"), for: .normal)
-//        button.tintColor = .black
-//        button.alpha = 0.0
-//        return button
-//    }()
-    
     let nameView: UILabel = {
         let view = UILabel()
-        view.toAutoLayout()
         view.textColor = .black
         view.textAlignment = .justified
         view.font = UIFont(name: "Helvetica-Bold", size : 18)
@@ -55,7 +38,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     let descriptionView: UILabel = {
         let view = UILabel()
-        view.toAutoLayout()
         view.textColor = .gray
         view.textAlignment = .justified
         view.font = UIFont(name: "Helvetica-Regular", size : 14)
@@ -65,7 +47,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     let statusButton: UIButton = {
         let button = UIButton(type: .system)
-        button.toAutoLayout()
         button.setTitle("Установить статус", for: .normal)
         button.backgroundColor = .systemBlue
         button.setTitleColor(.white, for: .normal)
@@ -80,7 +61,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     let statusField: UITextField = {
         let view = UITextField()
-        view.toAutoLayout()
         view.backgroundColor = .white
         view.layer.borderColor = UIColor.black.cgColor
         view.layer.borderWidth = 1
@@ -117,45 +97,45 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     @objc func handleTapGesture(_ gesture: UITapGestureRecognizer) {
         delegate?.viewDidTapAvatar()
+        print("avatar tapped")
     }
     
     func setupViews() {
-        NSLayoutConstraint.activate([
-            avatarView.leftAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leftAnchor, constant: 16),
-            avatarView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant:  16),
-            avatarView.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1/3.5),
-            avatarView.heightAnchor.constraint(equalToConstant: Constants.avatarLength),
-            
-            nameView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant:  27),
-            nameView.leftAnchor.constraint(equalTo: leftAnchor, constant: Constants.nameLeftBound),
-            nameView.widthAnchor.constraint(equalToConstant: 250),
-            nameView.heightAnchor.constraint(equalToConstant: 21),
-            
-            descriptionView.topAnchor.constraint(equalTo: topAnchor, constant: Constants.statusUpperBound),
-            descriptionView.leftAnchor.constraint(equalTo: leftAnchor, constant: Constants.nameLeftBound),
-            descriptionView.widthAnchor.constraint(equalToConstant: 250),
-            descriptionView.heightAnchor.constraint(equalToConstant: 18),
-            
-            statusButton.topAnchor.constraint(equalTo: topAnchor, constant: Constants.statusButtonUpperBound),
-            statusButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
-            statusButton.widthAnchor.constraint(equalToConstant: Constants.statusButtonLength),
-            statusButton.heightAnchor.constraint(equalToConstant: 50),
-            
-            statusField.topAnchor.constraint(equalTo: topAnchor, constant: Constants.statusFieldUpperBound),
-            statusField.leftAnchor.constraint(equalTo: leftAnchor, constant: Constants.nameLeftBound),
-            statusField.widthAnchor.constraint(equalToConstant: Constants.statusFieldLength),
-            statusField.heightAnchor.constraint(equalToConstant: 40),
-          
-//            backgroundAnimationView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor),
-//            backgroundAnimationView.leftAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leftAnchor),
-//            backgroundAnimationView.rightAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.rightAnchor),
-//            backgroundAnimationView.heightAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.heightAnchor),
-//            
-//            backgroundAnimationViewButton.topAnchor.constraint(equalTo: backgroundAnimationView.topAnchor, constant: 16),
-//            backgroundAnimationViewButton.rightAnchor.constraint(equalTo: backgroundAnimationView.rightAnchor, constant: -16),
-//            backgroundAnimationViewButton.widthAnchor.constraint(equalToConstant: 50),
-//            backgroundAnimationViewButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
+        
+        avatarView.snp.makeConstraints { maker in
+            maker.left.equalTo(self.contentView).inset(16)
+            maker.top.equalTo(self.contentView).inset(16)
+            maker.width.height.equalTo(Constants.avatarLength)
+        }
+        
+        nameView.snp.makeConstraints { maker in
+            maker.top.equalTo(self.contentView).inset(27)
+            maker.left.equalTo(Constants.nameLeftBound)
+            maker.height.equalTo(21)
+            maker.width.equalTo(250)
+        }
+        
+        descriptionView.snp.makeConstraints { maker in
+            maker.top.equalTo(Constants.statusUpperBound)
+            maker.left.equalTo(Constants.nameLeftBound)
+            maker.width.equalTo(250)
+            maker.height.equalTo(18)
+        }
+        
+        statusButton.snp.makeConstraints { maker in
+            maker.top.equalTo(Constants.statusButtonUpperBound)
+            maker.left.equalTo(self.contentView).inset(16)
+            maker.width.equalTo(Constants.statusButtonLength)
+            maker.height.equalTo(50)
+        }
+        
+        statusField.snp.makeConstraints { maker in
+            maker.top.equalTo(Constants.statusFieldUpperBound)
+            maker.left.equalTo(Constants.nameLeftBound)
+            maker.width.equalTo(Constants.statusFieldLength)
+            maker.height.equalTo(40)
+        }
+        
     }
     
     @objc public func statusTextChanged(_ textField: UITextField) {
