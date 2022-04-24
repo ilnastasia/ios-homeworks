@@ -45,6 +45,8 @@ class ProfileViewController: UIViewController, TapViewDelegate {
         super.viewDidLoad()
         profileHeader.delegate = self
         
+        //filterPictures()
+        
         #if DEBUG
         view.backgroundColor = .systemGray6
         #else
@@ -52,7 +54,6 @@ class ProfileViewController: UIViewController, TapViewDelegate {
         #endif
         
         view.addSubviews(tableView)
-        //view.addSubview(profileHeader.avatarView)
         setupTableView()
     }
     
@@ -103,11 +104,6 @@ class ProfileViewController: UIViewController, TapViewDelegate {
             tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
             tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             tableView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor),
-
-//            profileHeader.avatarView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 16),
-//            profileHeader.avatarView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant:  16),
-//            profileHeader.avatarView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1/3.5),
-//            profileHeader.avatarView.heightAnchor.constraint(equalToConstant: Constants.avatarLength),
         ])
         
         tableView.delegate = self

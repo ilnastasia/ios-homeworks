@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 struct Constants {
-    // profileHeaderView constants
+    /// profileHeaderView constants
     static let avatarLength = UIScreen.main.bounds.width / 3.5
     static let nameLeftBound = UIScreen.main.bounds.width / 2.75
     static let statusButtonLength = UIScreen.main.bounds.width - 32
@@ -12,7 +12,7 @@ struct Constants {
     static let statusFieldUpperBound = (UIScreen.main.bounds.width / 3.5) + 3
     static let statusFieldLength = UIScreen.main.bounds.width - UIScreen.main.bounds.width / 3.5 - 48
     
-    // Gallery constants
+    /// Gallery constants
     static let photoSectionImageView = (UIScreen.main.bounds.width - 48) / 4
     static let galleryPhotosHeight = (UIScreen.main.bounds.width - 32) / 3
     static let galleryPhotosWidth = (UIScreen.main.bounds.width - 32) / 3
