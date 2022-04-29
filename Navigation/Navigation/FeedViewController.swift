@@ -1,5 +1,6 @@
 
 import UIKit
+import StorageService
 
 class FeedViewController: UIViewController {
     
@@ -27,7 +28,7 @@ class FeedViewController: UIViewController {
     
     let firstButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Перейти на пост", for: .normal)
+        button.setTitle("Перейти на пост😏", for: .normal)
         button.backgroundColor = .systemBlue
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 4

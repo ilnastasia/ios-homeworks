@@ -1,5 +1,6 @@
 
 import UIKit
+import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
     
@@ -48,10 +49,10 @@ class PostTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
-        
         contentView.backgroundColor = .white
         contentView.addSubviews(authorLabel, postImageView, descriptionLabel, likesLabel, viewsLabel)
         setupViews()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -64,6 +65,29 @@ class PostTableViewCell: UITableViewCell {
         descriptionLabel.text = post.description
         likesLabel.text = "Likes: " + String(post.likes)
         viewsLabel.text = "Views: " + String(post.views)
+        
+        let randomFilter = Int.random(in: 1...8)
+           
+        let filter: ColorFilter?
+
+        switch randomFilter {
+            case 1: filter = .posterize
+            case 2: filter = .colorInvert
+            case 3: filter = .transfer
+            case 4: filter = .noir
+            case 5: filter = .tonal
+            case 6: filter = .process
+            case 7: filter = .chrome
+            case 8: filter = .fade
+            default: filter = nil
+        }
+
+        let processor = ImageProcessor()
+        guard let filter = filter else { return }
+        guard let image = postImageView.image else { return }
+        processor.processImage(sourceImage: image, filter: filter) { filteredImage in
+               postImageView.image = filteredImage }
+
     }
 
     func setupViews() {
