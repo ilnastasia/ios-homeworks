@@ -45,8 +45,6 @@ class ProfileViewController: UIViewController, TapViewDelegate {
         super.viewDidLoad()
         profileHeader.delegate = self
         
-        //filterPictures()
-        
         #if DEBUG
         view.backgroundColor = .systemGray6
         #else
