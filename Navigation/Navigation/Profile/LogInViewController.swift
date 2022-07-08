@@ -3,8 +3,17 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
-    let profileController = ProfileViewController()
+    let currentUserService: CurrentUserService
 
+    init(currentUserService: CurrentUserService) {
+        self.currentUserService = currentUserService
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -140,6 +149,7 @@ class LogInViewController: UIViewController {
     }
     
     @objc func toProfileButtonClicked() {
+        let profileController = ProfileViewController(userService: currentUserService)
         self.navigationController?.pushViewController(profileController, animated: true)
     }
     

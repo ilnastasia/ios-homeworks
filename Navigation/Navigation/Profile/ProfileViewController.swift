@@ -5,6 +5,20 @@ import UIKit
 class ProfileViewController: UIViewController, TapViewDelegate {
     
     let profileHeader = ProfileHeaderView()
+    let userService: UserService
+//    private let loginController: LogInViewController
+    
+    init(userService: UserService) {
+        self.userService = userService
+//        self.loginController = loginController
+//        self.user = user
+        super.init(nibName: nil, bundle: nil)
+//        loginController.loginTextField.text = user.fullName
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     fileprivate enum CellReuseIdentifiers: String {
         case postInfo = "PostCellReuse"
@@ -55,6 +69,10 @@ class ProfileViewController: UIViewController, TapViewDelegate {
         setupTableView()
     }
     
+    func getUserData (userService: UserService) {
+        //let myUser = userService.userHandler(name: <#T##String#>)
+    }
+    
     @objc func viewDidTapAvatar() {
         //print("avatar tapped")
         self.view.addSubview(self.backgroundAnimationView)
@@ -65,8 +83,6 @@ class ProfileViewController: UIViewController, TapViewDelegate {
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5) {
                 self.backgroundAnimationView.backgroundColor = .white
                 self.backgroundAnimationView.alpha = 0.5
-                //self.profileHeader.avatarView.center = self.view.center
-                //self.profileHeader.avatarView.transform = CGAffineTransform(scaleX: 3.5, y: 3.5)
             }
             
             UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.3) {

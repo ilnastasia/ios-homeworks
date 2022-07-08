@@ -8,8 +8,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     let feedController = FeedViewController(feedPost: FeedPost(title: "Пост"))
-    let profileController = ProfileViewController()
-    let logInController = LogInViewController()
+    let logInController: LogInViewController
+    
+    init(loginController: LogInViewController) {
+        self.logInController = loginController
+    }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
