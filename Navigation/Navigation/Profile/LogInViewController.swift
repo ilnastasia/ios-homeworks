@@ -3,17 +3,6 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
-    let currentUserService: CurrentUserService
-
-    init(currentUserService: CurrentUserService) {
-        self.currentUserService = currentUserService
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -149,8 +138,15 @@ class LogInViewController: UIViewController {
     }
     
     @objc func toProfileButtonClicked() {
-        let profileController = ProfileViewController(userService: currentUserService)
+        #if DEBUG
+        let testUserService = TestUserService()
+        let profileController = ProfileViewController(userService: testUserService, name: loginTextField.text!)
         self.navigationController?.pushViewController(profileController, animated: true)
+        #else
+        let currentUserService = CurrentUserService()
+        let profileController = ProfileViewController(userService: currentUserService, name: loginTextField.text!)
+        self.navigationController?.pushViewController(profileController, animated: true)
+        #endif
     }
     
     func registerForKeyboardNotifications() {

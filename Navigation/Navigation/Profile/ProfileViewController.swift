@@ -6,14 +6,13 @@ class ProfileViewController: UIViewController, TapViewDelegate {
     
     let profileHeader = ProfileHeaderView()
     let userService: UserService
-//    private let loginController: LogInViewController
+    let name: String
     
-    init(userService: UserService) {
+    init(userService: UserService, name: String) {
         self.userService = userService
-//        self.loginController = loginController
-//        self.user = user
+        self.name = name
         super.init(nibName: nil, bundle: nil)
-//        loginController.loginTextField.text = user.fullName
+
     }
     
     required init?(coder: NSCoder) {
@@ -67,10 +66,6 @@ class ProfileViewController: UIViewController, TapViewDelegate {
         
         view.addSubviews(tableView)
         setupTableView()
-    }
-    
-    func getUserData (userService: UserService) {
-        //let myUser = userService.userHandler(name: <#T##String#>)
     }
     
     @objc func viewDidTapAvatar() {
@@ -186,6 +181,12 @@ extension ProfileViewController: UITableViewDelegate {
             as! ProfileHeaderView
             profileHeaderView.tintColor = .systemGray6
             view.addSubviews(profileHeaderView)
+            
+            let myUser = userService.userHandler(name: name)
+            profileHeaderView.nameView.text = myUser?.fullName
+            profileHeaderView.avatarView.image = myUser?.avatar
+            profileHeaderView.descriptionView.text = myUser?.status
+
             return profileHeaderView
         } else {
             return nil

@@ -6,14 +6,7 @@ import StorageService
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    
-    let feedController = FeedViewController(feedPost: FeedPost(title: "Пост"))
-    let logInController: LogInViewController
-    
-    init(loginController: LogInViewController) {
-        self.logInController = loginController
-    }
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         let barAppearance = UINavigationBarAppearance()
@@ -33,6 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabbar = UITabBar.appearance()
         tabbar.standardAppearance = tabbarAppearance
         tabbar.scrollEdgeAppearance = tabbarAppearance
+        
+        let feedController = FeedViewController(feedPost: FeedPost(title: "Пост"))
+        let logInController = LogInViewController()
         
         let userFeed = UINavigationController(rootViewController: feedController)
         let userFeedItem = UITabBarItem()

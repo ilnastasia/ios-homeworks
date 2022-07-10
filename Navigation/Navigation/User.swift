@@ -19,18 +19,20 @@ class User {
 }
 
 class CurrentUserService: UserService {
-    var user: User
-    
-    init(user: User) {
-        self.user = user
-        
-    }
     
     func userHandler(name: String) -> User? {
+        var user = User(fullName: "", avatar: UIImage(named: "") ?? UIImage(named: "pixel")!, status: "")
         if user.fullName == name {
             return user
         } else {
             return nil
         }
+    }
+}
+
+class TestUserService: UserService {
+    func userHandler(name: String) -> User? {
+        let testUser = User(fullName: "Грогу", avatar: UIImage(named: "mandalorian4")!, status: "Катаюсь")
+        return testUser
     }
 }
