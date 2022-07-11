@@ -3,8 +3,6 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
-    let profileController = ProfileViewController()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -140,6 +138,12 @@ class LogInViewController: UIViewController {
     }
     
     @objc func toProfileButtonClicked() {
+        #if DEBUG
+        let userService = TestUserService()
+        #else
+        let userService = CurrentUserService()
+        #endif
+        let profileController = ProfileViewController(userService: userService, name: loginTextField.text!)
         self.navigationController?.pushViewController(profileController, animated: true)
     }
     

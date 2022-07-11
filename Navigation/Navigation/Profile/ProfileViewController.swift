@@ -5,6 +5,19 @@ import UIKit
 class ProfileViewController: UIViewController, TapViewDelegate {
     
     let profileHeader = ProfileHeaderView()
+    let userService: UserService
+    let name: String
+    
+    init(userService: UserService, name: String) {
+        self.userService = userService
+        self.name = name
+        super.init(nibName: nil, bundle: nil)
+
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     fileprivate enum CellReuseIdentifiers: String {
         case postInfo = "PostCellReuse"
@@ -65,8 +78,6 @@ class ProfileViewController: UIViewController, TapViewDelegate {
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5) {
                 self.backgroundAnimationView.backgroundColor = .white
                 self.backgroundAnimationView.alpha = 0.5
-                //self.profileHeader.avatarView.center = self.view.center
-                //self.profileHeader.avatarView.transform = CGAffineTransform(scaleX: 3.5, y: 3.5)
             }
             
             UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.3) {
@@ -170,6 +181,12 @@ extension ProfileViewController: UITableViewDelegate {
             as! ProfileHeaderView
             profileHeaderView.tintColor = .systemGray6
             view.addSubviews(profileHeaderView)
+            
+            let myUser = userService.userHandler(name: name)
+            profileHeaderView.nameView.text = myUser?.fullName
+            profileHeaderView.avatarView.image = myUser?.avatar
+            profileHeaderView.descriptionView.text = myUser?.status
+
             return profileHeaderView
         } else {
             return nil
