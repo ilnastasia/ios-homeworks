@@ -139,14 +139,12 @@ class LogInViewController: UIViewController {
     
     @objc func toProfileButtonClicked() {
         #if DEBUG
-        let testUserService = TestUserService()
-        let profileController = ProfileViewController(userService: testUserService, name: loginTextField.text!)
-        self.navigationController?.pushViewController(profileController, animated: true)
+        let userService = TestUserService()
         #else
-        let currentUserService = CurrentUserService()
-        let profileController = ProfileViewController(userService: currentUserService, name: loginTextField.text!)
-        self.navigationController?.pushViewController(profileController, animated: true)
+        let userService = CurrentUserService()
         #endif
+        let profileController = ProfileViewController(userService: userService, name: loginTextField.text!)
+        self.navigationController?.pushViewController(profileController, animated: true)
     }
     
     func registerForKeyboardNotifications() {
