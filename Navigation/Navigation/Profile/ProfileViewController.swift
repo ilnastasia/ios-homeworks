@@ -12,7 +12,6 @@ class ProfileViewController: UIViewController, TapViewDelegate {
         self.userService = userService
         self.name = name
         super.init(nibName: nil, bundle: nil)
-
     }
     
     required init?(coder: NSCoder) {
