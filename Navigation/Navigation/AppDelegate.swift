@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let feedController = FeedViewController(feedPost: FeedPost(title: "Пост"))
         let logInController = LogInViewController()
+        logInController.delegate = Factory.shared.returnInspector()
         
         let userFeed = UINavigationController(rootViewController: feedController)
         let userFeedItem = UITabBarItem()

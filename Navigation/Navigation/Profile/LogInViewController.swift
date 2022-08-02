@@ -1,10 +1,25 @@
 
 import UIKit
 
-class LogInViewController: UIViewController {
+protocol LogInViewControllerDelegate {
+    func userCheck (login: String, password: String) -> Bool
+}
+
+class LoginInspector: LogInViewControllerDelegate {
+    func userCheck(login: String, password: String) -> Bool {
+        return Checker.shared.loginPasswordCheck(login: login, password: password)
+    }
+}
+
+class LogInViewController: UIViewController, UITextFieldDelegate {
+    
+    var delegate: LogInViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loginTextField.delegate = self
+        passwordTextField.delegate = self
         
         registerForKeyboardNotifications()
         tapToHideKeyboard()
@@ -144,7 +159,10 @@ class LogInViewController: UIViewController {
         let userService = CurrentUserService()
         #endif
         let profileController = ProfileViewController(userService: userService, name: loginTextField.text!)
-        self.navigationController?.pushViewController(profileController, animated: true)
+        if delegate?.userCheck(login: loginTextField.text!, password: passwordTextField.text!) == true {
+            self.navigationController?.pushViewController(profileController, animated: true)
+        }
+        
     }
     
     func registerForKeyboardNotifications() {
