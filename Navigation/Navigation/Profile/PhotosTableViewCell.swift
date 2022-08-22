@@ -75,19 +75,19 @@ class PhotosTableViewCell: UITableViewCell {
     func setImages() {
         for photo in photosArray {
             if photo == photosArray[0]{
-                imageView1.image = UIImage(named: photo)
+                imageView1.image = photo
             }
             
             if photo == photosArray[1] {
-                imageView2.image = UIImage(named: photo)
+                imageView2.image = photo
             }
             
             if photo == photosArray[2] {
-                imageView3.image = UIImage(named: photo)
+                imageView3.image = photo
             }
             
             if photo == photosArray[3] {
-                imageView4.image = UIImage(named: photo)
+                imageView4.image = photo
             }
         }
     }

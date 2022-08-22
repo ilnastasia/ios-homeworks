@@ -1,7 +1,11 @@
 
 import UIKit
+import iOSIntPackage
 
 class PhotosViewController: UIViewController {
+    
+    var myPhotosArray = [UIImage]()
+    let imagePublisherFacade = ImagePublisherFacade()
     
     let collectionView: UICollectionView = {
         let viewLayout = UICollectionViewFlowLayout()
@@ -25,6 +29,14 @@ class PhotosViewController: UIViewController {
         view.addSubviews(collectionView)
         setupNavigationController()
         setupCollectionView()
+        
+        imagePublisherFacade.subscribe(self)
+        imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 20, userImages: photosArray)
+    }
+    
+    deinit {
+        imagePublisherFacade.rechargeImageLibrary()
+        imagePublisherFacade.removeSubscription(for: self)
     }
     
     func setupNavigationController() {
@@ -56,13 +68,13 @@ extension PhotosViewController: UICollectionViewDataSource {
             fatalError()
         }
         
-        cell.update(image: photosArray[indexPath.row])
+        cell.update(image: myPhotosArray[indexPath.row])
     
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photosArray.count
+        return myPhotosArray.count
     }
 }
 
@@ -87,5 +99,12 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         LayoutConstants.spacing
+    }
+}
+
+extension PhotosViewController: ImageLibrarySubscriber {
+    func receive(images: [UIImage]) {
+        myPhotosArray = images
+        collectionView.reloadData()
     }
 }
