@@ -22,6 +22,8 @@
 		5D86E6FD2753C18000757705 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D86E6FC2753C18000757705 /* Assets.xcassets */; };
 		5D86E7002753C18000757705 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D86E6FE2753C18000757705 /* LaunchScreen.storyboard */; };
 		5D86E7242753EDFE00757705 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D86E7232753EDFE00757705 /* FeedViewController.swift */; };
+		5D8D90A328B6893C004C983C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7010CC281FF5F1006D478C /* User.swift */; };
+		5D8D90A528B68A32004C983C /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8D90A428B68A32004C983C /* CustomButton.swift */; };
 		5D9832CD280333C40063F5CD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D859B48278A339F0090F56F /* Extensions.swift */; };
 		5D9832CE280333C40063F5CD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D86E6F72753C17E00757705 /* ViewController.swift */; };
 		5D9832CF280333C40063F5CD /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4F85D42799A96A003EADAD /* PostTableViewCell.swift */; };
@@ -112,6 +114,7 @@
 		5D86E6FF2753C18000757705 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5D86E7012753C18000757705 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D86E7232753EDFE00757705 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		5D8D90A428B68A32004C983C /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		5D9832C82803323C0063F5CD /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D9832E5280333C40063F5CD /* Navigation copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Navigation copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D9832E6280333C40063F5CD /* Navigation copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Navigation copy-Info.plist"; path = "/Users/anastasia/Documents/ProjectsHWForNetology/Navigation/Navigation copy-Info.plist"; sourceTree = "<absolute>"; };
@@ -198,24 +201,45 @@
 		5D86E6F22753C17E00757705 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				5DC60BDE2768C33700A9D2A0 /* Profile */,
-				5D86E6F32753C17E00757705 /* AppDelegate.swift */,
-				5D86E6F72753C17E00757705 /* ViewController.swift */,
+				5D8D90A128B6887B004C983C /* Controllers */,
+				5DC60BDE2768C33700A9D2A0 /* Cells */,
+				5D8D90A228B6890C004C983C /* Other */,
 				5D86E6FC2753C18000757705 /* Assets.xcassets */,
 				5D86E6FE2753C18000757705 /* LaunchScreen.storyboard */,
 				5D86E7012753C18000757705 /* Info.plist */,
-				5D86E7232753EDFE00757705 /* FeedViewController.swift */,
-				5DAFCAC8275435D4001461CE /* PostViewController.swift */,
-				5DE1C45C27580706006903A0 /* InfoViewController.swift */,
-				5D6B5F97276A240200C85958 /* Content.swift */,
-				5DF380852789F7A9009E5FAD /* Constants.swift */,
-				5D859B48278A339F0090F56F /* Extensions.swift */,
-				5DD84B062790B573006ED396 /* ColorFromHexCode.swift */,
-				5D7010CC281FF5F1006D478C /* User.swift */,
-				5D72610728902F36007069DA /* Checker.swift */,
-				5D72610928907DD9007069DA /* Factory.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		5D8D90A128B6887B004C983C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5D86E6F72753C17E00757705 /* ViewController.swift */,
+				5DE1C45C27580706006903A0 /* InfoViewController.swift */,
+				5DAFCAC8275435D4001461CE /* PostViewController.swift */,
+				5DD84B082790E2CB006ED396 /* LogInViewController.swift */,
+				5DC60BE12768E41B00A9D2A0 /* ProfileViewController.swift */,
+				5DB78BCD27AAD9E5006B07AA /* PhotosViewController.swift */,
+				5D86E7232753EDFE00757705 /* FeedViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5D8D90A228B6890C004C983C /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				5D7010CC281FF5F1006D478C /* User.swift */,
+				5D72610928907DD9007069DA /* Factory.swift */,
+				5D72610728902F36007069DA /* Checker.swift */,
+				5DD84B062790B573006ED396 /* ColorFromHexCode.swift */,
+				5D859B48278A339F0090F56F /* Extensions.swift */,
+				5DF380852789F7A9009E5FAD /* Constants.swift */,
+				5D6B5F97276A240200C85958 /* Content.swift */,
+				5DC60BDF2768E3BB00A9D2A0 /* ProfileHeaderView.swift */,
+				5D86E6F32753C17E00757705 /* AppDelegate.swift */,
+				5D8D90A428B68A32004C983C /* CustomButton.swift */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		5DA754622800F3F5004598B9 /* StorageService */ = {
@@ -229,18 +253,14 @@
 			path = StorageService;
 			sourceTree = "<group>";
 		};
-		5DC60BDE2768C33700A9D2A0 /* Profile */ = {
+		5DC60BDE2768C33700A9D2A0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				5DB78BCD27AAD9E5006B07AA /* PhotosViewController.swift */,
-				5DC60BDF2768E3BB00A9D2A0 /* ProfileHeaderView.swift */,
-				5DC60BE12768E41B00A9D2A0 /* ProfileViewController.swift */,
-				5DD84B082790E2CB006ED396 /* LogInViewController.swift */,
 				5D4F85D42799A96A003EADAD /* PostTableViewCell.swift */,
 				5DB78BCB27AA92E3006B07AA /* PhotosTableViewCell.swift */,
 				5DB78BCF27AAEB12006B07AA /* PhotosCollectionViewCell.swift */,
 			);
-			path = Profile;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		C1C356FBB98B6A97073244BF /* Frameworks */ = {
@@ -496,6 +516,7 @@
 				5D86E6F82753C17E00757705 /* ViewController.swift in Sources */,
 				5D4F85D52799A96A003EADAD /* PostTableViewCell.swift in Sources */,
 				5DD84B072790B573006ED396 /* ColorFromHexCode.swift in Sources */,
+				5D8D90A528B68A32004C983C /* CustomButton.swift in Sources */,
 				5D86E6F42753C17E00757705 /* AppDelegate.swift in Sources */,
 				5D86E7242753EDFE00757705 /* FeedViewController.swift in Sources */,
 				5D6B5F98276A240200C85958 /* Content.swift in Sources */,
@@ -525,6 +546,7 @@
 				5D9832D1280333C40063F5CD /* AppDelegate.swift in Sources */,
 				5D9832D2280333C40063F5CD /* FeedViewController.swift in Sources */,
 				5D9832D3280333C40063F5CD /* Content.swift in Sources */,
+				5D8D90A328B6893C004C983C /* User.swift in Sources */,
 				5D9832D4280333C40063F5CD /* ProfileHeaderView.swift in Sources */,
 				5D9832D5280333C40063F5CD /* PhotosTableViewCell.swift in Sources */,
 				5D9832D6280333C40063F5CD /* PhotosViewController.swift in Sources */,

@@ -45,17 +45,27 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return view
     }()
     
-    let statusButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Установить статус", for: .normal)
-        button.backgroundColor = .systemBlue
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 4
-        button.layer.shadowOffset = CGSize(width: 4, height: 4)
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowRadius = 4
-        button.layer.shadowOpacity = 0.7
-        button.addTarget(self, action:#selector(statusButtonClicked), for: .touchUpInside)
+//    let statusButton: UIButton = {
+//        let button = UIButton(type: .system)
+//        button.setTitle("Установить статус", for: .normal)
+//        button.backgroundColor = .systemBlue
+//        button.setTitleColor(.white, for: .normal)
+//        button.layer.cornerRadius = 4
+//        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+//        button.layer.shadowColor = UIColor.black.cgColor
+//        button.layer.shadowRadius = 4
+//        button.layer.shadowOpacity = 0.7
+//        button.addTarget(self, action:#selector(statusButtonClicked), for: .touchUpInside)
+//        return button
+//    }()
+    
+    lazy var statusButton: CustomButton = {
+        let button = CustomButton(
+            title: "Установить статус",
+            titleColor: .white,
+            radius: 4,
+            color: .systemBlue)
+        
         return button
     }()
     
@@ -73,6 +83,11 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
+        
+        statusButton.tapAction = { [weak self] in
+            guard let self = self else { return }
+            self.statusButtonClicked()
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -93,6 +108,8 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
 
         guard let text = saveName.object(forKey: "descriptionView") as? String else { return }
             descriptionView.text = text
+        
+        
     }
     
     @objc func handleTapGesture(_ gesture: UITapGestureRecognizer) {
