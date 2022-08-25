@@ -10,6 +10,7 @@
 		1CFDAA224BAE9F795F2FD78B /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B53BFDA40B66AC61D7BF2005 /* Pods_StorageService.framework */; };
 		578E8FC23B0F8C657FCA9C4B /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00E03B12C6D12706ED502219 /* Pods_Navigation.framework */; };
 		5D40BFDA280DB2AA005A2114 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 5D40BFD9280DB2AA005A2114 /* iOSIntPackage */; };
+		5D4C7FF228B7D484007CFF30 /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4C7FF128B7D484007CFF30 /* FeedModel.swift */; };
 		5D4F85D52799A96A003EADAD /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4F85D42799A96A003EADAD /* PostTableViewCell.swift */; };
 		5D55B65528AC14F4002408FC /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 5D55B65428AC14F4002408FC /* iOSIntPackage */; };
 		5D6B5F98276A240200C85958 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6B5F97276A240200C85958 /* Content.swift */; };
@@ -102,6 +103,7 @@
 		00E03B12C6D12706ED502219 /* Pods_Navigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Navigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		341B22745E6A670C9FEE9019 /* Pods-Navigation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.debug.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.debug.xcconfig"; sourceTree = "<group>"; };
 		3F3CECC37AEC42C81A63BE1E /* Pods-StorageService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService.debug.xcconfig"; path = "Target Support Files/Pods-StorageService/Pods-StorageService.debug.xcconfig"; sourceTree = "<group>"; };
+		5D4C7FF128B7D484007CFF30 /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
 		5D4F85D42799A96A003EADAD /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		5D6B5F97276A240200C85958 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		5D7010CC281FF5F1006D478C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				5DC60BDF2768E3BB00A9D2A0 /* ProfileHeaderView.swift */,
 				5D86E6F32753C17E00757705 /* AppDelegate.swift */,
 				5D8D90A428B68A32004C983C /* CustomButton.swift */,
+				5D4C7FF128B7D484007CFF30 /* FeedModel.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 				5D86E6F82753C17E00757705 /* ViewController.swift in Sources */,
 				5D4F85D52799A96A003EADAD /* PostTableViewCell.swift in Sources */,
 				5DD84B072790B573006ED396 /* ColorFromHexCode.swift in Sources */,
+				5D4C7FF228B7D484007CFF30 /* FeedModel.swift in Sources */,
 				5D8D90A528B68A32004C983C /* CustomButton.swift in Sources */,
 				5D86E6F42753C17E00757705 /* AppDelegate.swift in Sources */,
 				5D86E7242753EDFE00757705 /* FeedViewController.swift in Sources */,

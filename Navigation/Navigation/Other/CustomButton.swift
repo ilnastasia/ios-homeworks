@@ -6,7 +6,6 @@ class CustomButton: UIButton {
     var titleColor: UIColor
     var radius: Int
     var color: UIColor
-    //var image: UIImage
     
     var tapAction: (()->Void)?
     
@@ -25,7 +24,6 @@ class CustomButton: UIButton {
         layer.cornerRadius = CGFloat(radius)
         titleLabel?.font = UIFont.systemFont(ofSize: 17)
         addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        //setBackgroundImage(image, for: .normal)
         layer.masksToBounds = true
         translatesAutoresizingMaskIntoConstraints = false
     }

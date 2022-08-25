@@ -45,20 +45,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return view
     }()
     
-//    let statusButton: UIButton = {
-//        let button = UIButton(type: .system)
-//        button.setTitle("Установить статус", for: .normal)
-//        button.backgroundColor = .systemBlue
-//        button.setTitleColor(.white, for: .normal)
-//        button.layer.cornerRadius = 4
-//        button.layer.shadowOffset = CGSize(width: 4, height: 4)
-//        button.layer.shadowColor = UIColor.black.cgColor
-//        button.layer.shadowRadius = 4
-//        button.layer.shadowOpacity = 0.7
-//        button.addTarget(self, action:#selector(statusButtonClicked), for: .touchUpInside)
-//        return button
-//    }()
-    
     lazy var statusButton: CustomButton = {
         let button = CustomButton(
             title: "Установить статус",
