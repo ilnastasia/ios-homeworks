@@ -32,6 +32,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         logInStackView.addArrangedSubview(passwordTextField)
         
         setupViews()
+        
+        loginButton.tapAction = { [weak self] in
+            guard let self = self else { return }
+            self.toProfileButtonClicked()
+        }
     }
     
     deinit {
@@ -103,18 +108,17 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         return view
     }()
     
-    let loginButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.toAutoLayout()
-        button.layer.cornerRadius = 10
-        button.setTitle("Log In", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.addTarget(self, action:#selector(toProfileButtonClicked), for: .touchUpInside)
+    lazy var loginButton: CustomButton = {
+        let button = CustomButton(
+            title: "Log In",
+            titleColor: .white,
+            radius: 10,
+            color: VKColorForDifStates!)
+        
         button.setBackgroundImage(UIImage(named: "pixel"), for: .normal)
-        button.setBackgroundColor(color: VKColorForDifStates ?? .systemBlue, forState: [.highlighted, .selected, .disabled])
-        button.layer.masksToBounds = true
         return button
     }()
+    
     
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
