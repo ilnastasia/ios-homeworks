@@ -19,9 +19,7 @@ class PostViewController: UIViewController {
     }
     
     @objc func infoButtonIsClicked() {
-        print("clicked")
-        infoController = InfoViewController()
-        infoController?.view.backgroundColor = .green
-        present(infoController!, animated: true, completion: nil)
+        let coordinator = InfoCoordinator()
+        coordinator.showDetails(navigationController: navigationController, coordinator: coordinator)
     }
 }

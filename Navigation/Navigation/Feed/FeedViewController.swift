@@ -5,11 +5,13 @@ import StorageService
 class FeedViewController: UIViewController {
     
     var postController: PostViewController?
-    var feedPost: FeedPost
-    let model = FeedModel()
+    var feedPost = FeedPost(title: "Пост")
+    let model: FeedModel?
+    let coordinator: FeedCoordinator?
     
-    init(feedPost: FeedPost) {
-        self.feedPost = feedPost
+    init(model: FeedModel, coordinator: FeedCoordinator) {
+        self.model = model
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -89,8 +91,6 @@ class FeedViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .white
-        navigationItem.title = "Лента"
-        
         postController = PostViewController()
         postController?.postName = feedPost.title
         
@@ -123,7 +123,7 @@ class FeedViewController: UIViewController {
     func setupViews() {
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
-            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -140),
+            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -250),
             stackView.leftAnchor.constraint(equalTo: view.leftAnchor),
             stackView.rightAnchor.constraint(equalTo: view.rightAnchor),
             
@@ -158,11 +158,12 @@ class FeedViewController: UIViewController {
     }
     
     @objc func toPostButtonClicked() {
-        self.navigationController?.pushViewController(postController!, animated: true)
+        let coordinator = PostCoordinator()
+        coordinator.showDetail(navigationController: navigationController, coordinator: coordinator)
     }
     
     func checkGuessButtonClicked() {
-        model.check(word: textField.text!)
+        model?.check(word: textField.text!)
     }
 }
 

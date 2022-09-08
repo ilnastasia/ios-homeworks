@@ -14,6 +14,7 @@ class LoginInspector: LogInViewControllerDelegate {
 class LogInViewController: UIViewController, UITextFieldDelegate {
     
     var delegate: LogInViewControllerDelegate?
+    var isAuthoruzed: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -165,8 +166,8 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         let profileController = ProfileViewController(userService: userService, name: loginTextField.text!)
         if delegate?.userCheck(login: loginTextField.text!, password: passwordTextField.text!) == true {
             self.navigationController?.pushViewController(profileController, animated: true)
+            isAuthoruzed = true
         }
-        
     }
     
     func registerForKeyboardNotifications() {

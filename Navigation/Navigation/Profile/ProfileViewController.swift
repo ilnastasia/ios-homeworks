@@ -201,9 +201,9 @@ extension ProfileViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let photosViewController = PhotosViewController()
         if indexPath.section == 0 {
-            navigationController?.pushViewController(photosViewController, animated: true)
+            let coordinator = PhotoCoordinator()
+            coordinator.showDetails(navigationController: navigationController!, coordinator: coordinator)
         }
     }
 }
